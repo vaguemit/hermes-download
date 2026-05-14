@@ -19,14 +19,13 @@ const items = [
 
 export function Roadmap() {
   return (
-    <section className="py-[160px] max-md:py-[96px] bg-[var(--color-bg)] border-t border-[var(--color-border-subtle)]">
+    <section className="py-[120px] bg-[var(--color-bg)] border-t border-[var(--color-border)] font-mono">
       <div className="max-w-[1080px] mx-auto px-8">
         <div className="text-center mb-[64px]">
-          <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] border border-[var(--color-border)] rounded-[2px] font-mono text-[0.6875rem] font-normal tracking-[0.08em] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
-            <div className="w-[5px] h-[5px] rounded-full bg-[var(--color-text-tertiary)] shrink-0" />
-            ROADMAP
+          <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] font-mono text-[0.8125rem] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
+            ─[ ROADMAP ]─
           </div>
-          <h2 className="section-headline">
+          <h2 className="text-[1.5rem] font-bold text-[var(--color-text-primary)]">
             What&apos;s coming.
           </h2>
         </div>
@@ -38,18 +37,22 @@ export function Roadmap() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative group border border-[var(--color-border-strong)] bg-transparent p-[28px] rounded-none hover:border-[var(--color-text-secondary)] transition-colors duration-200"
+              transition={{ duration: 0.3, delay: idx * 0.1, ease: "easeOut" }}
+              className="relative group border border-[var(--color-border)] bg-transparent p-[24px] hover:border-[var(--color-border-strong)] transition-colors duration-200"
             >
-              <div className="absolute top-[20px] right-[20px] px-[8px] py-[2px] border border-[var(--color-border)] bg-transparent text-[0.6875rem] font-mono uppercase tracking-[0.04em] text-[var(--color-text-tertiary)]">
-                Coming soon
+              <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
+              <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
+              <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
+              <span className="absolute -bottom-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┘</span>
+              
+              <div className="absolute top-[16px] right-[16px] text-[0.6875rem] text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-secondary)] transition-colors">
+                [ TBD ]
               </div>
               
-              <div className="w-[7px] h-[7px] rounded-full bg-[var(--color-text-tertiary)] group-hover:bg-[var(--color-text-secondary)] transition-colors duration-[200ms] mb-[20px]" />
-              <h3 className="text-[1rem] font-medium text-[var(--color-text-primary)] mb-[10px] tracking-[-0.01em]">
+              <h3 className="text-[0.875rem] font-medium text-[var(--color-text-primary)] mb-[12px] pr-[40px] leading-[1.4]">
                 {item.title}
               </h3>
-              <p className="text-[0.875rem] text-[var(--color-text-secondary)] leading-[1.6]">
+              <p className="text-[0.8125rem] text-[var(--color-text-secondary)] leading-[1.6]">
                 {item.body}
               </p>
             </motion.div>
