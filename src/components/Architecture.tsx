@@ -18,7 +18,7 @@ export function Architecture() {
         pathLength: 1,
         opacity: 1,
         transition: {
-          pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
+          pathLength: { delay, duration: 1.5 },
           opacity: { delay, duration: 0.01 },
         },
       };
