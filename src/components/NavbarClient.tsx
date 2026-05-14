@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Github, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
 
@@ -12,7 +12,16 @@ interface NavbarClientProps {
 
 export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const links = [
     { name: "Features", href: "#features" },
@@ -22,55 +31,46 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-[56px] z-50 glass-nav border-b border-white/5 transition-all duration-300">
-      <div className="max-w-[1120px] mx-auto px-6 lg:px-16 h-full flex items-center justify-between">
+    <header
+      className={clsx(
+        "fixed top-0 left-0 right-0 h-[52px] z-[100] glass-nav transition-colors duration-300",
+        scrolled ? "border-b border-[rgba(232,232,228,0.04)]" : "border-b border-transparent"
+      )}
+    >
+      <div className="max-w-[1080px] mx-auto px-8 h-full flex items-center justify-between">
         {/* Left: Logo */}
         <Link href="#hero" className="flex items-center space-x-1 group">
-          <span className="font-mono font-bold tracking-wider text-[15px] text-foreground">
-            HERMES
-          </span>
-          <span className="font-mono font-bold tracking-wider text-[15px] text-foreground relative">
-            GUI
-            <span className="absolute -bottom-[2px] left-0 w-full h-[2px] bg-[var(--color-violet)]"></span>
+          <span className="font-sans font-medium tracking-[0.04em] text-[0.875rem] text-[var(--color-text-primary)]">
+            hermes gui
           </span>
         </Link>
 
         {/* Center: Links (Desktop) */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center gap-[32px]">
           {links.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="relative text-sm text-[#f0ede8]/70 hover:text-[#f0ede8] transition-colors py-2 group font-medium"
+              className="text-[0.875rem] font-sans font-normal text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[180ms] ease-in-out"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[var(--color-violet)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </Link>
           ))}
         </nav>
 
         {/* Right: Actions */}
         <div className="flex items-center space-x-4">
-          <a
-            href="https://github.com/vaguemit/hermes-gui"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:flex items-center space-x-2 text-sm text-[#f0ede8]/70 hover:text-[#f0ede8] transition-colors bg-white/5 px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20"
-          >
-            <Github className="w-4 h-4" />
-            <span className="font-mono">{stars.toLocaleString()}</span>
-          </a>
-
           <Link
             href="#install"
-            className="hidden sm:inline-flex items-center justify-center bg-[var(--color-violet)] hover:bg-[#8b5cf6] text-white text-sm font-semibold px-4 py-1.5 transition-all hover:scale-[1.02]"
+            className="hidden sm:inline-flex items-center justify-center bg-[var(--color-text-primary)] hover:bg-[var(--color-accent-hover)] text-[var(--color-text-inverse)] text-[0.8125rem] font-medium px-[14px] py-[6px] rounded-none transition-all duration-[180ms] hover:scale-[1.015] active:scale-[0.98] outline-offset-2 focus:outline-2 focus:outline-[var(--color-text-primary)]"
+            style={{ transitionTimingFunction: "var(--ease-spring)" }}
           >
-            Download {latestVersion}
+            Download ↓
           </Link>
 
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden text-[#f0ede8] p-1"
+            className="md:hidden text-[var(--color-text-primary)] p-1"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -81,30 +81,23 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-[56px] left-0 w-full glass-nav border-b border-white/5 py-4 px-6 flex flex-col space-y-4 shadow-xl">
+        <div className="md:hidden absolute top-[52px] left-0 w-full glass-nav border-b border-[var(--color-border-subtle)] py-4 px-8 flex flex-col gap-2 shadow-xl animate-in slide-in-from-top-2 duration-300">
           {links.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-[#f0ede8]/80 hover:text-[#f0ede8] py-2 border-b border-white/5"
+              className="text-[1.5rem] font-medium text-[var(--color-text-primary)] py-2"
               onClick={() => setIsOpen(false)}
             >
               {link.name}
             </Link>
           ))}
-          <a
-            href="https://github.com/vaguemit/hermes-gui"
-            className="flex items-center space-x-2 text-[#f0ede8]/80 py-2 border-b border-white/5"
-          >
-            <Github className="w-4 h-4" />
-            <span>GitHub ({stars})</span>
-          </a>
           <Link
             href="#install"
-            className="inline-flex items-center justify-center bg-[var(--color-violet)] text-white text-sm font-semibold px-4 py-2 mt-2 w-full"
+            className="inline-flex items-center justify-center bg-[var(--color-text-primary)] text-[var(--color-text-inverse)] text-[1rem] font-medium px-4 py-3 mt-4 w-full rounded-none"
             onClick={() => setIsOpen(false)}
           >
-            Download {latestVersion}
+            Download ↓
           </Link>
         </div>
       )}
