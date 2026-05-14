@@ -11,7 +11,7 @@ export function Architecture() {
         pathLength: 1,
         opacity: 1,
         transition: {
-          pathLength: { delay, duration: 1.5, ease: [0.25, 1, 0.5, 1] },
+          pathLength: { delay, duration: 1.5, ease: "easeOut" },
           opacity: { delay, duration: 0.01 },
         },
       };
@@ -44,7 +44,7 @@ export function Architecture() {
                       strokeWidth="1"
                       fill="none"
                       custom={0}
-                      variants={draw}
+                      variants={draw as any}
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true }}
@@ -66,7 +66,7 @@ export function Architecture() {
                         strokeWidth="1"
                         fill="none"
                         custom={1}
-                        variants={draw}
+                        variants={draw as any}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
@@ -75,7 +75,7 @@ export function Architecture() {
                         points="35,6 40,10 35,14"
                         fill="rgba(232,232,228,0.12)"
                         custom={1.2}
-                        variants={draw}
+                        variants={draw as any}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
@@ -109,7 +109,7 @@ export function Architecture() {
                         strokeWidth="1"
                         fill="none"
                         custom={2}
-                        variants={draw}
+                        variants={draw as any}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
@@ -118,7 +118,7 @@ export function Architecture() {
                         points="35,6 40,10 35,14"
                         fill="rgba(232,232,228,0.12)"
                         custom={2.2}
-                        variants={draw}
+                        variants={draw as any}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
@@ -143,7 +143,7 @@ export function Architecture() {
                           strokeWidth="1"
                           fill="none"
                           custom={3}
-                          variants={draw}
+                          variants={draw as any}
                           initial="hidden"
                           whileInView="visible"
                           viewport={{ once: true }}
@@ -154,7 +154,7 @@ export function Architecture() {
                           strokeWidth="1"
                           fill="none"
                           custom={3.2}
-                          variants={draw}
+                          variants={draw as any}
                           initial="hidden"
                           whileInView="visible"
                           viewport={{ once: true }}
