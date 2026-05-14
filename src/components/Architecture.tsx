@@ -3,13 +3,6 @@
 import { motion } from "framer-motion";
 
 export function Architecture() {
-  const bullets = [
-    "The app wraps Hermes — it does not reimplement it.",
-    "Chat flows through Hermes Agent's OpenAI-compatible API.",
-    "Desktop-only tasks (install, process management) use Tauri IPC.",
-    "Falls back gracefully in browser preview mode — no Rust required to explore the UI.",
-  ];
-
   const draw = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: (i: number) => {
@@ -18,7 +11,7 @@ export function Architecture() {
         pathLength: 1,
         opacity: 1,
         transition: {
-          pathLength: { delay, duration: 1.5 },
+          pathLength: { delay, duration: 1.5, ease: [0.25, 1, 0.5, 1] },
           opacity: { delay, duration: 0.01 },
         },
       };
@@ -26,20 +19,14 @@ export function Architecture() {
   };
 
   return (
-    <section className="py-[160px] max-md:py-[96px] bg-[#0a0a0a] border-y border-white/5">
-      <div className="max-w-[1120px] mx-auto px-6 lg:px-16">
-        <h2 className="text-[36px] font-[800] tracking-tight text-white mb-16">
-          How it works
-        </h2>
-
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+    <section className="py-[160px] bg-[var(--color-bg)]">
+      <div className="max-w-[1080px] mx-auto px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[80px] items-start">
           {/* Left: Diagram */}
-          <div className="w-full lg:w-[55%] bg-[#121212] border border-white/10 rounded-lg p-8 relative overflow-hidden font-mono text-[12px] sm:text-[14px]">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-violet)]/10 blur-[80px] pointer-events-none rounded-full translate-x-1/2 -translate-y-1/2" />
-            
-            <div className="relative z-10 text-[#f0ede8]">
+          <div className="w-full relative overflow-hidden font-mono text-[11px]">
+            <div className="relative z-10 text-[rgba(232,232,228,0.5)]">
               {/* This is a stylized representation of the diagram */}
-              <div className="mb-4 text-white font-bold bg-white/5 border border-white/10 inline-block px-3 py-1 rounded">
+              <div className="mb-4 text-[rgba(232,232,228,0.5)] bg-[rgba(232,232,228,0.03)] border border-[rgba(232,232,228,0.12)] inline-block px-[12px] py-[6px] rounded-none">
                 React Renderer
               </div>
               
@@ -53,8 +40,8 @@ export function Architecture() {
                   >
                     <motion.path
                       d="M 1 0 L 1 280"
-                      stroke="rgba(255,255,255,0.2)"
-                      strokeWidth="2"
+                      stroke="rgba(232,232,228,0.12)"
+                      strokeWidth="1"
                       fill="none"
                       custom={0}
                       variants={draw}
@@ -75,8 +62,8 @@ export function Architecture() {
                     >
                       <motion.path
                         d="M 0 0 L 0 10 L 35 10"
-                        stroke="rgba(124,58,237,0.6)"
-                        strokeWidth="2"
+                        stroke="rgba(232,232,228,0.12)"
+                        strokeWidth="1"
                         fill="none"
                         custom={1}
                         variants={draw}
@@ -86,7 +73,7 @@ export function Architecture() {
                       />
                       <motion.polygon
                         points="35,6 40,10 35,14"
-                        fill="rgba(124,58,237,0.6)"
+                        fill="rgba(232,232,228,0.12)"
                         custom={1.2}
                         variants={draw}
                         initial="hidden"
@@ -95,16 +82,16 @@ export function Architecture() {
                       />
                     </motion.svg>
                     <div className="pl-6 flex items-center space-x-3">
-                      <span className="text-[var(--color-violet)]">fetch/SSE</span>
-                      <span className="opacity-50">──►</span>
-                      <span className="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-white/80">
-                        localhost:8642/v1/chat/completions
+                      <span className="text-[rgba(232,232,228,0.25)]">SSE</span>
+                      <span className="text-[rgba(232,232,228,0.12)]">──►</span>
+                      <span className="text-[rgba(232,232,228,0.25)]">
+                        localhost:8642
                       </span>
                     </div>
                     <div className="pl-6 mt-4">
-                      <div className="ml-32 border-l-2 border-white/10 pl-4 py-2 opacity-80">
-                        <span className="text-white font-bold bg-white/5 border border-white/10 inline-block px-3 py-1 rounded">
-                          Hermes Agent (local)
+                      <div className="ml-[120px] border-l border-[rgba(232,232,228,0.12)] pl-4 py-2">
+                        <span className="text-[rgba(232,232,228,0.5)] bg-[rgba(232,232,228,0.03)] border border-[rgba(232,232,228,0.12)] inline-block px-[12px] py-[6px] rounded-none">
+                          Hermes Agent
                         </span>
                       </div>
                     </div>
@@ -118,8 +105,8 @@ export function Architecture() {
                     >
                       <motion.path
                         d="M 0 0 L 0 10 L 35 10"
-                        stroke="rgba(255,255,255,0.4)"
-                        strokeWidth="2"
+                        stroke="rgba(232,232,228,0.12)"
+                        strokeWidth="1"
                         fill="none"
                         custom={2}
                         variants={draw}
@@ -129,7 +116,7 @@ export function Architecture() {
                       />
                       <motion.polygon
                         points="35,6 40,10 35,14"
-                        fill="rgba(255,255,255,0.4)"
+                        fill="rgba(232,232,228,0.12)"
                         custom={2.2}
                         variants={draw}
                         initial="hidden"
@@ -138,13 +125,13 @@ export function Architecture() {
                       />
                     </motion.svg>
                     <div className="pl-6 flex items-center space-x-3">
-                      <span className="text-white/60">Tauri IPC</span>
-                      <span className="opacity-50">──►</span>
-                      <span className="bg-[#1a1a1a] border border-white/20 px-3 py-1 rounded font-bold text-white">
+                      <span className="text-[rgba(232,232,228,0.25)]">Tauri IPC</span>
+                      <span className="text-[rgba(232,232,228,0.12)]">──►</span>
+                      <span className="bg-[rgba(232,232,228,0.03)] border border-[rgba(232,232,228,0.12)] px-[12px] py-[6px] rounded-none text-[rgba(232,232,228,0.5)]">
                         Rust Backend
                       </span>
                     </div>
-                    <div className="pl-6 mt-4 opacity-70 ml-24 relative">
+                    <div className="pl-6 mt-4 ml-[120px] relative text-[rgba(232,232,228,0.25)]">
                       <motion.svg
                         className="absolute top-0 -left-4 w-[20px] h-full"
                         viewBox="0 0 20 120"
@@ -152,7 +139,7 @@ export function Architecture() {
                       >
                         <motion.path
                           d="M 10 0 L 10 105"
-                          stroke="rgba(255,255,255,0.2)"
+                          stroke="rgba(232,232,228,0.12)"
                           strokeWidth="1"
                           fill="none"
                           custom={3}
@@ -163,7 +150,7 @@ export function Architecture() {
                         />
                         <motion.path
                           d="M 10 15 L 18 15 M 10 45 L 18 45 M 10 75 L 18 75 M 10 105 L 18 105"
-                          stroke="rgba(255,255,255,0.2)"
+                          stroke="rgba(232,232,228,0.12)"
                           strokeWidth="1"
                           fill="none"
                           custom={3.2}
@@ -173,11 +160,11 @@ export function Architecture() {
                           viewport={{ once: true }}
                         />
                       </motion.svg>
-                      <div className="space-y-[13px] pl-2 text-white/50">
-                        <div>├── hermes_install_status</div>
-                        <div>├── hermes_run_command</div>
-                        <div>├── hermes_start_gateway</div>
-                        <div>└── hermes_gateway_status</div>
+                      <div className="space-y-[13px] pl-2">
+                        <div>├── install_status</div>
+                        <div>├── run_command</div>
+                        <div>├── start_gateway</div>
+                        <div>└── gateway_status</div>
                       </div>
                     </div>
                   </div>
@@ -186,29 +173,59 @@ export function Architecture() {
             </div>
           </div>
 
-          {/* Right: Bullets */}
-          <div className="w-full lg:w-[45%]">
-            <ul className="space-y-6">
-              {bullets.map((bullet, idx) => (
-                <motion.li
-                  key={idx}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.15 }}
-                  className="flex items-start"
-                >
-                  <span className="mr-4 mt-1 text-[var(--color-violet)] shrink-0 opacity-80">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </span>
-                  <span className="text-[16px] text-[#f0ede8]/80 leading-relaxed">
-                    {bullet}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
+          {/* Right: Text */}
+          <div className="w-full">
+            <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] border border-[var(--color-border)] rounded-[2px] font-mono text-[0.6875rem] font-normal tracking-[0.08em] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
+              <div className="w-[5px] h-[5px] rounded-full bg-[var(--color-text-tertiary)] shrink-0" />
+              HOW IT WORKS
+            </div>
+            
+            <h2 className="section-headline text-left mb-[32px]">
+              Wraps Hermes.<br />
+              Doesn&apos;t replace it.
+            </h2>
+            
+            <div className="space-y-[20px]">
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[0.9375rem] text-[var(--color-text-secondary)] leading-[1.7]"
+              >
+                Chat flows through Hermes Agent&apos;s OpenAI-compatible API server. The app adds a window, not a model.
+              </motion.p>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[0.9375rem] text-[var(--color-text-secondary)] leading-[1.7]"
+              >
+                Desktop-only tasks — installation, process management, file I/O — run through Tauri IPC to a Rust backend.
+              </motion.p>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[0.9375rem] text-[var(--color-text-secondary)] leading-[1.7]"
+              >
+                The React renderer falls back gracefully in browser mode. No Rust required to explore the UI.
+              </motion.p>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[0.9375rem] text-[var(--color-text-secondary)] leading-[1.7]"
+              >
+                All configuration reads and writes real <code className="font-mono text-[var(--color-text-tertiary)] bg-[rgba(232,232,228,0.06)] px-[4px] py-[1px] rounded-[2px]">~/.hermes</code> files. Nothing is duplicated or abstracted away.
+              </motion.p>
+            </div>
           </div>
         </div>
       </div>
