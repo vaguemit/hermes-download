@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import clsx from "clsx";
 
@@ -33,68 +32,78 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 right-0 h-[52px] z-[100] glass-nav transition-colors duration-300",
-        scrolled ? "border-b border-[rgba(232,232,228,0.04)]" : "border-b border-transparent"
+        "fixed top-0 left-0 right-0 z-[100] transition-colors duration-300 font-mono",
+        scrolled ? "bg-[rgba(10,10,10,0.95)]" : "bg-transparent"
       )}
     >
-      <div className="max-w-[1080px] mx-auto px-8 h-full flex items-center justify-between">
-        {/* Left: Logo */}
-        <Link href="#hero" className="flex items-center space-x-1 group">
-          <span className="font-sans font-medium tracking-[0.04em] text-[0.875rem] text-[var(--color-text-primary)]">
-            hermes gui
-          </span>
-        </Link>
-
-        {/* Center: Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-[32px]">
-          {links.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-[0.875rem] font-sans font-normal text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[180ms] ease-in-out"
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Right: Actions */}
-        <div className="flex items-center space-x-4">
-          <Link
-            href="#install"
-            className="hidden sm:inline-flex items-center justify-center bg-[var(--color-text-primary)] hover:bg-[var(--color-accent-hover)] text-[var(--color-text-inverse)] text-[0.8125rem] font-medium px-[14px] py-[6px] rounded-none transition-all duration-[180ms] hover:scale-[1.015] active:scale-[0.98] outline-offset-2 focus:outline-2 focus:outline-[var(--color-text-primary)]"
-            style={{ transitionTimingFunction: "var(--ease-spring)" }}
-          >
-            Download ↓
+      <div className="max-w-[1080px] mx-auto px-8 pt-4 pb-2 flex flex-col">
+        <div className="flex items-center justify-between mb-2">
+          {/* Left: Logo */}
+          <Link href="#hero" className="flex items-center group text-[var(--color-text-primary)] text-[0.8125rem]">
+            hermes gui<span className="opacity-0 group-hover:opacity-100">_</span>
           </Link>
 
-          {/* Mobile menu toggle */}
-          <button
-            className="md:hidden text-[var(--color-text-primary)] p-1"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Center: Links (Desktop) */}
+          <nav className="hidden md:flex items-center gap-[16px] text-[0.8125rem] text-[var(--color-text-secondary)]">
+            {links.map((link, index) => (
+              <div key={link.name} className="flex items-center gap-[16px]">
+                <Link
+                  href={link.href}
+                  className="group hover:text-[var(--color-text-primary)] transition-colors duration-[180ms] ease-in-out"
+                >
+                  {link.name}<span className="opacity-0 group-hover:opacity-100">_</span>
+                </Link>
+                {index < links.length - 1 && <span>·</span>}
+              </div>
+            ))}
+          </nav>
+
+          {/* Right: Actions */}
+          <div className="flex items-center space-x-4">
+            <Link
+              href="#install"
+              className="hidden md:inline-flex relative group items-center justify-center bg-transparent border border-[var(--color-border)] text-[var(--color-text-primary)] hover:bg-[var(--color-text-primary)] hover:text-[var(--color-bg)] hover:border-[var(--color-text-primary)] text-[0.8125rem] px-[16px] py-[4px] rounded-none transition-colors duration-150"
+            >
+              <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] leading-none">┌</span>
+              <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] leading-none">┐</span>
+              <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] leading-none">└</span>
+              <span className="absolute -bottom-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] leading-none">┘</span>
+              Download ↓
+            </Link>
+
+            {/* Mobile menu toggle */}
+            <button
+              className="md:hidden text-[var(--color-text-primary)] text-[0.8125rem] border border-[var(--color-border)] px-2 py-1"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? "[X]" : "[MENU]"}
+            </button>
+          </div>
+        </div>
+        
+        {/* Full-width ASCII Rule */}
+        <div className="w-full overflow-hidden whitespace-nowrap text-[var(--color-border)] text-[0.8125rem] select-none leading-none opacity-50">
+          {"─".repeat(200)}
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-[52px] left-0 w-full glass-nav border-b border-[var(--color-border-subtle)] py-4 px-8 flex flex-col gap-2 shadow-xl animate-in slide-in-from-top-2 duration-300">
+        <div className="md:hidden absolute top-[100%] left-0 w-full bg-[rgba(10,10,10,0.98)] border-b border-[var(--color-border)] py-4 px-8 flex flex-col gap-4 font-mono">
           {links.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-[1.5rem] font-medium text-[var(--color-text-primary)] py-2"
+              className="group text-[1rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] py-2"
               onClick={() => setIsOpen(false)}
             >
-              {link.name}
+              {link.name}<span className="opacity-0 group-hover:opacity-100">_</span>
             </Link>
           ))}
           <Link
             href="#install"
-            className="inline-flex items-center justify-center bg-[var(--color-text-primary)] text-[var(--color-text-inverse)] text-[1rem] font-medium px-4 py-3 mt-4 w-full rounded-none"
+            className="inline-flex items-center justify-center bg-transparent border border-[var(--color-border)] text-[var(--color-text-primary)] hover:bg-[var(--color-text-primary)] hover:text-[var(--color-bg)] text-[1rem] px-[16px] py-[8px] mt-2 rounded-none transition-colors"
             onClick={() => setIsOpen(false)}
           >
             Download ↓
