@@ -2,54 +2,52 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] border-t border-white/5 pt-20 pb-10">
-      <div className="max-w-[1120px] mx-auto px-6 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+    <footer className="bg-[var(--color-bg)] border-t border-[var(--color-border-subtle)] pt-[80px] pb-[40px]">
+      <div className="max-w-[1080px] mx-auto px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[48px] mb-[64px]">
           {/* Left */}
-          <div className="space-y-6">
-            <Link href="#hero" className="flex items-center space-x-1 group">
-              <span className="font-mono font-bold tracking-wider text-[15px] text-[#f0ede8]">
-                HERMES
-              </span>
-              <span className="font-mono font-bold tracking-wider text-[15px] text-[#f0ede8] relative">
-                GUI
-                <span className="absolute -bottom-[2px] left-0 w-full h-[2px] bg-[var(--color-violet)]"></span>
+          <div className="space-y-[24px]">
+            <Link href="#hero" className="flex items-center group">
+              <span className="font-sans font-medium tracking-[0.04em] text-[0.875rem] text-[var(--color-text-primary)]">
+                hermes gui
               </span>
             </Link>
-            <p className="text-[#f0ede8]/50 text-sm leading-relaxed max-w-[280px]">
-              A desktop interface for Nous Research Hermes Agent.
+            <p className="text-[var(--color-text-secondary)] text-[0.875rem] leading-[1.6] max-w-[280px]">
+              A desktop interface for the Nous Research Hermes Agent.
             </p>
-            <div className="inline-block px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-[#f0ede8]/40">
+            <div className="inline-block px-[8px] py-[2px] border border-[var(--color-border)] rounded-[2px] text-[0.6875rem] font-mono text-[var(--color-text-tertiary)] uppercase tracking-[0.04em]">
               MIT License
             </div>
           </div>
 
           {/* Center */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Resources</h4>
-            <ul className="space-y-4">
+            <h4 className="text-[0.6875rem] font-mono uppercase tracking-[0.08em] text-[var(--color-text-tertiary)] mb-[24px]">
+              Resources
+            </h4>
+            <ul className="space-y-[12px]">
               <li>
-                <Link href="/docs" className="text-[#f0ede8]/50 hover:text-white transition-colors text-sm">
+                <Link href="/docs" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors text-[0.875rem]">
                   Documentation
                 </Link>
               </li>
               <li>
-                <a href="https://github.com/vaguemit/hermes-gui" target="_blank" rel="noopener noreferrer" className="text-[#f0ede8]/50 hover:text-white transition-colors text-sm">
+                <a href="https://github.com/vaguemit/hermes-gui" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors text-[0.875rem]">
                   GitHub Repository
                 </a>
               </li>
               <li>
-                <Link href="#changelog" className="text-[#f0ede8]/50 hover:text-white transition-colors text-sm">
+                <Link href="#changelog" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors text-[0.875rem]">
                   Changelog
                 </Link>
               </li>
               <li>
-                <a href="https://github.com/vaguemit/hermes-gui/issues" target="_blank" rel="noopener noreferrer" className="text-[#f0ede8]/50 hover:text-white transition-colors text-sm">
+                <a href="https://github.com/vaguemit/hermes-gui/issues" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors text-[0.875rem]">
                   Issues
                 </a>
               </li>
               <li>
-                <a href="https://github.com/vaguemit/hermes-gui/discussions" target="_blank" rel="noopener noreferrer" className="text-[#f0ede8]/50 hover:text-white transition-colors text-sm">
+                <a href="https://github.com/vaguemit/hermes-gui/discussions" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors text-[0.875rem]">
                   Discussions
                 </a>
               </li>
@@ -58,14 +56,16 @@ export function Footer() {
 
           {/* Right */}
           <div>
-            <h4 className="text-white font-semibold mb-6">Stack</h4>
-            <ul className="space-y-4">
-              <li className="text-[#f0ede8]/50 text-sm">
-                <span className="text-white/30 mr-2">Built with:</span>
+            <h4 className="text-[0.6875rem] font-mono uppercase tracking-[0.08em] text-[var(--color-text-tertiary)] mb-[24px]">
+              Stack
+            </h4>
+            <ul className="space-y-[12px]">
+              <li className="text-[var(--color-text-secondary)] text-[0.875rem]">
+                <span className="text-[var(--color-text-tertiary)] mr-[8px]">Built with:</span>
                 Tauri, React, Rust, Tailwind
               </li>
-              <li className="text-[#f0ede8]/50 text-sm">
-                <span className="text-white/30 mr-2">Based on:</span>
+              <li className="text-[var(--color-text-secondary)] text-[0.875rem]">
+                <span className="text-[var(--color-text-tertiary)] mr-[8px]">Based on:</span>
                 NousResearch/hermes-agent
               </li>
             </ul>
@@ -73,8 +73,8 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#f0ede8]/30 font-mono text-center sm:text-left">
-          <p>© 2025 Hermes GUI Contributors · MIT License</p>
+        <div className="pt-[32px] border-t border-[var(--color-border-subtle)] flex flex-col sm:flex-row justify-between items-center gap-[16px] text-[0.6875rem] text-[var(--color-text-tertiary)] font-mono text-center sm:text-left">
+          <p>© 2025 Hermes GUI Contributors</p>
           <p>Not affiliated with Anthropic or OpenAI</p>
         </div>
       </div>

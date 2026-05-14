@@ -4,27 +4,32 @@ export async function OpenSourceCTA() {
   const stars = await getGithubStars();
 
   return (
-    <section className="w-full py-[120px] bg-[rgba(124,58,237,0.08)] border-y border-[rgba(124,58,237,0.2)] flex flex-col items-center justify-center text-center px-6">
-      <h2 className="text-[40px] font-[800] tracking-tight text-white mb-6">
+    <section className="w-full py-[160px] max-md:py-[96px] bg-[var(--color-bg)] border-t border-[var(--color-border-subtle)] flex flex-col items-center justify-center text-center px-8">
+      <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] border border-[var(--color-border)] rounded-[2px] font-mono text-[0.6875rem] font-normal tracking-[0.08em] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
+        <div className="w-[5px] h-[5px] rounded-full bg-[var(--color-text-tertiary)] shrink-0" />
+        OPEN SOURCE
+      </div>
+      
+      <h2 className="section-headline mb-[24px]">
         Open source. Forever.
       </h2>
       
-      <p className="text-[18px] text-[#f0ede8]/70 max-w-[600px] mb-10 leading-relaxed font-sans">
-        Hermes GUI is MIT-licensed. PRs welcome. Built on Tauri, React, and the Nous Research Hermes Agent ecosystem.
+      <p className="text-[1rem] text-[var(--color-text-secondary)] max-w-[560px] mb-[40px] leading-[1.6]">
+        Hermes GUI is MIT-licensed. Built on Tauri, React, and the Nous Research Hermes Agent ecosystem.
       </p>
 
-      <div className="flex flex-col sm:flex-row items-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center gap-[12px] w-full sm:w-auto">
         <a
           href="https://github.com/vaguemit/hermes-gui"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center bg-transparent border border-white/20 hover:border-white/40 text-[#f0ede8] font-semibold px-8 py-3.5 transition-all hover:bg-white/5"
+          className="flex w-full sm:w-auto items-center justify-center bg-transparent border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:border-[var(--color-border-strong)] font-medium text-[0.9375rem] px-[20px] py-[10px] rounded-none transition-all duration-[180ms] outline-offset-[3px] focus:outline-2 focus:outline-[var(--color-text-primary)] active:scale-[0.98]"
         >
-          Star on GitHub ★ <span className="ml-2 opacity-60 font-mono">{stars.toLocaleString()}</span>
+          Star on GitHub ★ <span className="ml-[8px] font-mono text-[0.875rem] text-[var(--color-text-tertiary)]">{stars.toLocaleString()}</span>
         </a>
         <a
           href="/docs"
-          className="flex items-center justify-center bg-transparent border border-[var(--color-violet)]/40 hover:border-[var(--color-violet)] text-[var(--color-violet)] hover:bg-[var(--color-violet)]/10 font-semibold px-8 py-3.5 transition-all"
+          className="flex w-full sm:w-auto items-center justify-center bg-transparent border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:border-[var(--color-border-strong)] font-medium text-[0.9375rem] px-[20px] py-[10px] rounded-none transition-all duration-[180ms] outline-offset-[3px] focus:outline-2 focus:outline-[var(--color-text-primary)] active:scale-[0.98]"
         >
           Read the Docs →
         </a>
