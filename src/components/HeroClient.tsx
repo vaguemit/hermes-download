@@ -7,146 +7,134 @@ import { useOS } from "@/hooks/use-os";
 export function HeroClient({ latestVersion }: { latestVersion: string }) {
   const os = useOS();
   const [typedText, setTypedText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
-  const fullText = "A desktop GUI for\nOpen Source.";
+  const [done, setDone] = useState(false);
+  const fullText = "A desktop GUI for Hermes Agent.";
 
   useEffect(() => {
     let i = 0;
-    const interval = setInterval(() => {
-      setTypedText(fullText.substring(0, i));
+    const iv = setInterval(() => {
       i++;
-      if (i > fullText.length) {
-        clearInterval(interval);
-        setTimeout(() => setShowCursor(false), 3000);
-      }
-    }, 45);
-    return () => clearInterval(interval);
+      setTypedText(fullText.slice(0, i));
+      if (i >= fullText.length) { clearInterval(iv); setDone(true); }
+    }, 40);
+    return () => clearInterval(iv);
   }, []);
 
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] flex flex-col items-center justify-center pt-[80px] overflow-hidden font-mono"
+      className="relative min-h-[100dvh] flex flex-col items-center justify-center font-mono overflow-x-hidden"
     >
-      <div className="relative z-10 w-full max-w-[1080px] px-8 mt-[120px] mb-[64px] flex flex-col items-center">
-        
-        {/* Hero ASCII Box */}
-        <div className="relative border border-[var(--color-border)] w-full max-w-[720px] p-[32px] sm:p-[48px] text-left mb-[48px]">
-          {/* Corners */}
-          <span className="absolute -top-[10px] -left-[4px] text-[var(--color-border)] text-[1rem] leading-none bg-[var(--color-bg)] h-[20px] w-[20px] flex items-center justify-center">┌</span>
-          <span className="absolute -top-[10px] -right-[4px] text-[var(--color-border)] text-[1rem] leading-none bg-[var(--color-bg)] h-[20px] w-[20px] flex items-center justify-center">┐</span>
-          <span className="absolute -bottom-[10px] -left-[4px] text-[var(--color-border)] text-[1rem] leading-none bg-[var(--color-bg)] h-[20px] w-[20px] flex items-center justify-center">└</span>
-          <span className="absolute -bottom-[10px] -right-[4px] text-[var(--color-border)] text-[1rem] leading-none bg-[var(--color-bg)] h-[20px] w-[20px] flex items-center justify-center">┘</span>
-          
-          {/* Eyebrow */}
-          <div className="absolute -top-[10px] left-[24px] bg-[var(--color-bg)] px-[8px] text-[var(--color-text-tertiary)] text-[0.8125rem]">
-            ─[ BUILT FOR NOUS RESEARCH HERMES AGENT ]─
-          </div>
+      <div className="relative z-10 w-full max-w-[860px] px-4 sm:px-8 pt-[100px] pb-[64px] flex flex-col items-center">
 
-          <h1 className="text-[2rem] sm:text-[2.5rem] font-bold leading-[1.2] text-[var(--color-text-primary)] mb-[32px] min-h-[96px] sm:min-h-[120px] whitespace-pre-line">
+        {/* ── Top label bar ── */}
+        <div className="w-full text-[var(--color-text-tertiary)] text-[0.75rem] mb-1 select-none">
+          ┌─[ hermes-gui ]──────────────────────────────────────────────────────┐
+        </div>
+
+        {/* ── Hero box ── */}
+        <div className="w-full border-l border-r border-[var(--color-border)] px-6 sm:px-10 py-8 text-left">
+
+          {/* headline */}
+          <h1 className="text-[1.875rem] sm:text-[2.5rem] font-bold leading-[1.2] text-[var(--color-text-primary)] mb-6 min-h-[2.5em]">
             {typedText}
-            {showCursor && <span className="cursor text-[var(--color-text-primary)] ml-[4px]">█</span>}
+            {!done && <span className="cursor">█</span>}
           </h1>
 
+          {/* subhead */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 1.5 }}
-            className="text-[1rem] text-[var(--color-text-secondary)] max-w-[480px] leading-[1.6] mb-[40px]"
+            transition={{ delay: 1.6 }}
+            className="text-[0.9375rem] text-[var(--color-text-secondary)] max-w-[520px] leading-[1.7] mb-8"
           >
-            Install, configure, and run Hermes Agent from a native desktop app. No terminal.
+            Install, configure, and run Hermes Agent from a native desktop app.<br />
+            No terminal required.
           </motion.p>
 
+          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 1.7 }}
-            className="flex flex-col sm:flex-row gap-[16px] mb-[40px]"
+            transition={{ delay: 1.8 }}
+            className="flex flex-col sm:flex-row gap-3 mb-8"
           >
             <a
+              id="cta-download"
               href="#install"
-              className="group relative flex items-center justify-center bg-transparent text-[var(--color-text-primary)] hover:bg-[var(--color-text-primary)] hover:text-[var(--color-bg)] px-[24px] py-[12px] transition-colors duration-[180ms]"
+              className="inline-flex items-center justify-center border border-[var(--color-text-primary)] text-[var(--color-text-primary)] hover:bg-[var(--color-text-primary)] hover:text-[var(--color-bg)] px-6 py-2.5 text-[0.9375rem] transition-colors duration-150"
             >
-              <span className="absolute inset-0 border border-[var(--color-border)] group-hover:border-[var(--color-text-primary)]" />
-              <span className="absolute -top-[6px] -left-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">┌</span>
-              <span className="absolute -top-[6px] -right-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">┐</span>
-              <span className="absolute -bottom-[6px] -left-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">└</span>
-              <span className="absolute -bottom-[6px] -right-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">┘</span>
-              <span className="relative z-10 text-[0.9375rem] font-medium">Download for {os !== "Unknown" ? os : "Win"} ↓</span>
+              [ Download for {os !== "Unknown" ? os : "Windows"} ↓ ]
             </a>
-            
             <a
+              id="cta-github"
               href="https://github.com/vaguemit/hermes-gui"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-center bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-bg)] hover:bg-[var(--color-text-primary)] px-[24px] py-[12px] transition-colors duration-[180ms]"
+              className="inline-flex items-center justify-center border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-text-primary)] px-6 py-2.5 text-[0.9375rem] transition-colors duration-150"
             >
-              <span className="absolute inset-0 border border-[var(--color-border)] group-hover:border-[var(--color-text-primary)]" />
-              <span className="absolute -top-[6px] -left-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">┌</span>
-              <span className="absolute -top-[6px] -right-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">┐</span>
-              <span className="absolute -bottom-[6px] -left-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">└</span>
-              <span className="absolute -bottom-[6px] -right-[3px] text-[var(--color-border)] group-hover:text-[var(--color-text-primary)] text-[0.75rem] leading-none bg-[var(--color-bg)] group-hover:bg-[var(--color-text-primary)] px-[1px] py-[2px]">┘</span>
-              <span className="relative z-10 text-[0.9375rem] font-medium">View on GitHub →</span>
+              [ View on GitHub → ]
             </a>
           </motion.div>
 
+          {/* meta */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 1.9 }}
-            className="text-[0.8125rem] text-[var(--color-text-tertiary)]"
+            transition={{ delay: 2.0 }}
+            className="text-[0.75rem] text-[var(--color-text-tertiary)]"
           >
-            v{latestVersion} · macOS · Windows · Linux · MIT
+            v{latestVersion} · macOS · Windows · Linux · MIT License
           </motion.div>
         </div>
 
-        {/* App Mockup (Terminal style styling) */}
+        {/* ── Bottom label bar ── */}
+        <div className="w-full text-[var(--color-text-tertiary)] text-[0.75rem] mt-1 select-none">
+          └─[ BUILT FOR NOUS RESEARCH HERMES AGENT ]────────────────────────────┘
+        </div>
+
+        {/* ── App Mockup ── */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 2.1 }}
-          className="w-full max-w-[960px] mx-auto relative border border-[var(--color-border-strong)] bg-[var(--color-surface)] aspect-[16/10] overflow-hidden"
+          transition={{ delay: 2.2, duration: 0.5 }}
+          className="w-full mt-10 border border-[var(--color-border)] bg-[var(--color-surface)]"
         >
-          {/* Fake Window Chrome */}
-          <div className="h-[28px] border-b border-[var(--color-border)] flex items-center px-[12px] bg-[var(--color-bg)]">
-            <div className="flex gap-[6px]">
-              <div className="w-[6px] h-[6px] bg-[var(--color-border-strong)]" />
-              <div className="w-[6px] h-[6px] bg-[var(--color-border-strong)]" />
-              <div className="w-[6px] h-[6px] bg-[var(--color-border-strong)]" />
-            </div>
-            <div className="mx-auto text-[0.75rem] text-[var(--color-text-tertiary)] uppercase tracking-wider">
-              hermes-gui — Conversation
-            </div>
+          {/* title bar */}
+          <div className="flex items-center gap-3 px-4 py-2 border-b border-[var(--color-border)] bg-[var(--color-bg)] text-[0.75rem] text-[var(--color-text-tertiary)]">
+            <span className="text-[var(--color-border-strong)]">■ ■ ■</span>
+            <span className="mx-auto uppercase tracking-widest">hermes-gui — conversation</span>
           </div>
-          
-          {/* Abstract App Layout (Grayscale/Monospace) */}
-          <div className="flex h-[calc(100%-28px)]">
-            <div className="w-[60px] border-r border-[var(--color-border)] bg-[var(--color-bg)] flex flex-col items-center py-4 gap-[24px]">
-              <div className="text-[var(--color-text-secondary)] text-[0.875rem]">≡</div>
-              <div className="text-[var(--color-text-tertiary)] text-[0.875rem]">□</div>
-              <div className="text-[var(--color-text-tertiary)] text-[0.875rem]">□</div>
+
+          {/* mock chat */}
+          <div className="flex" style={{ minHeight: "260px" }}>
+            {/* sidebar */}
+            <div className="w-12 border-r border-[var(--color-border)] flex flex-col items-center pt-4 gap-5 text-[var(--color-text-secondary)] text-sm shrink-0">
+              <span>≡</span>
+              <span className="text-[var(--color-text-tertiary)]">□</span>
+              <span className="text-[var(--color-text-tertiary)]">□</span>
             </div>
-            <div className="flex-1 p-6 flex flex-col justify-end pb-8 relative">
-              {/* ASCII texture in background */}
-              <div className="absolute inset-0 opacity-[0.03] overflow-hidden pointer-events-none text-[0.6875rem] leading-[1.2] whitespace-pre select-none">
-                {Array(40).fill("░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒").join("\n")}
-              </div>
-              
-              <div className="flex gap-[16px] mb-[24px] relative z-10">
-                <div className="w-8 h-8 bg-[var(--color-border)] shrink-0 flex items-center justify-center text-[0.6875rem]">U</div>
-                <div className="bg-[var(--color-bg)] border border-[var(--color-border-strong)] p-4 max-w-[80%] text-[var(--color-text-secondary)] text-[0.875rem]">
-                  What is the difference between Tauri IPC and standard WebSocket?
+
+            {/* messages */}
+            <div className="flex-1 flex flex-col justify-end p-5 gap-4">
+              {/* user bubble */}
+              <div className="flex gap-3 items-start">
+                <div className="w-7 h-7 shrink-0 bg-[var(--color-border)] flex items-center justify-center text-[0.625rem] text-[var(--color-text-primary)]">U</div>
+                <div className="border border-[var(--color-border)] bg-[var(--color-bg)] p-3 text-[0.8125rem] text-[var(--color-text-secondary)] max-w-[70%]">
+                  What is the difference between Tauri IPC and a standard WebSocket?
                 </div>
               </div>
-              <div className="flex gap-[16px] self-end flex-row-reverse relative z-10">
-                <div className="w-8 h-8 bg-[var(--color-text-primary)] text-[var(--color-bg)] shrink-0 flex items-center justify-center text-[0.6875rem]">H</div>
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border-strong)] p-4 max-w-[80%] text-[var(--color-text-primary)] text-[0.875rem]">
-                  Tauri IPC (Inter-Process Communication) provides a direct channel between the frontend webview and the Rust backend, operating over the native OS bindings rather than a network stack like WebSocket. This avoids binding to local ports and has lower overhead.
+              {/* agent bubble */}
+              <div className="flex gap-3 items-start self-end flex-row-reverse">
+                <div className="w-7 h-7 shrink-0 bg-[var(--color-text-primary)] text-[var(--color-bg)] flex items-center justify-center text-[0.625rem]">H</div>
+                <div className="border border-[var(--color-border-strong)] bg-[var(--color-surface)] p-3 text-[0.8125rem] text-[var(--color-text-primary)] max-w-[70%]">
+                  Tauri IPC is a direct OS-native channel between the webview and Rust backend — no port binding, no network stack. WebSocket runs over TCP and requires a local listener. IPC is faster and more secure for desktop apps.
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );
