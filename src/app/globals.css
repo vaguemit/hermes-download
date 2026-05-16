@@ -122,28 +122,28 @@ body::after {
   /* Centered page container */
   .page-container {
     width: 100%;
-    max-width: var(--container-width);
+    max-width: 1120px; /* equivalent to max-w-6xl */
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   /* Section spacing */
   .section-padding {
-    padding-top: var(--section-gap);
-    padding-bottom: var(--section-gap);
+    padding-top: 160px;
+    padding-bottom: 160px;
   }
   @media (max-width: 768px) {
     .section-padding {
-      padding-top: var(--section-gap-sm);
-      padding-bottom: var(--section-gap-sm);
+      padding-top: 100px;
+      padding-bottom: 100px;
     }
   }
 
   /* Text sizes */
-  .text-hero    { font-size: var(--text-hero); }
-  .text-section { font-size: var(--text-section); }
+  .text-hero    { font-size: clamp(2.75rem, 6vw, 4rem); }
+  .text-section { font-size: clamp(1.5rem, 4vw, 2rem); }
 
   /* ASCII outline box (clean border, no broken corners) */
   .ascii-box {
@@ -155,7 +155,7 @@ body::after {
 
   /* Section headings */
   .section-headline {
-    font-size: var(--text-section);
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 700;
     line-height: 1.2;
     color: var(--color-text-primary);
