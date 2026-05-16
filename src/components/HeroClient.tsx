@@ -20,15 +20,33 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
   const downloadUrl = `https://github.com/vaguemit/hermes-gui/releases/download/${latestVersion}/hermes-gui_${latestVersion}_${osName === 'macOS' ? 'universal' : 'x64'}${ext}`;
 
   return (
-    <section id="hero" className="w-full">
-      <div className="min-h-[85vh] flex flex-col justify-center max-w-6xl mx-auto px-6 pt-32 pb-16">
-        
+    <section id="hero" style={{ width: "100%" }}>
+      <div
+        style={{
+          maxWidth: "1152px",
+          margin: "0 auto",
+          padding: "128px 24px 64px",
+          minHeight: "85vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
         {/* Eyebrow Pill */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-          className="inline-flex self-start border border-[#1f1f1f] rounded-full px-3 py-1 text-xs text-[#888] mb-6"
+          style={{
+            display: "inline-flex",
+            alignSelf: "flex-start",
+            border: "1px solid #1f1f1f",
+            borderRadius: "9999px",
+            padding: "4px 12px",
+            fontSize: "12px",
+            color: "#888",
+            marginBottom: "24px",
+          }}
         >
           BUILT ON NOUS RESEARCH HERMES AGENT
         </motion.div>
@@ -38,9 +56,16 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="text-6xl font-bold tracking-tight leading-none mb-4"
+          style={{
+            fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
+            fontWeight: 700,
+            letterSpacing: "-0.025em",
+            lineHeight: 1.05,
+            marginBottom: "16px",
+            color: "#f5f5f5",
+          }}
         >
-          Everything Hermes. Now with a UI.
+          Everything Hermes.<br />Now with a UI.
         </motion.h1>
 
         {/* Subtitle */}
@@ -48,7 +73,13 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-          className="text-lg text-[#888] max-w-xl mb-8 leading-relaxed"
+          style={{
+            fontSize: "18px",
+            color: "#888",
+            maxWidth: "560px",
+            marginBottom: "32px",
+            lineHeight: 1.6,
+          }}
         >
           Install, configure, and run Hermes Agent from a native desktop app. No terminal required.
         </motion.p>
@@ -58,11 +89,25 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.55, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-3"
+          style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}
         >
           <a
             href={downloadUrl}
-            className="inline-flex justify-center items-center bg-white text-black px-5 py-2.5 rounded-md text-sm font-medium hover:bg-[#e6e6e6] transition-colors duration-150"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#fff",
+              color: "#000",
+              padding: "10px 20px",
+              borderRadius: "6px",
+              fontSize: "14px",
+              fontWeight: 500,
+              textDecoration: "none",
+              transition: "background-color 150ms",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e6e6e6")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#fff")}
           >
             {downloadLabel}
           </a>
@@ -70,7 +115,26 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
             href="https://github.com/vaguemit/hermes-gui"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex justify-center items-center border border-[#1f1f1f] text-[#888] px-5 py-2.5 rounded-md text-sm hover:text-white hover:border-[#333] transition-colors duration-150"
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+              border: "1px solid #1f1f1f",
+              color: "#888",
+              padding: "10px 20px",
+              borderRadius: "6px",
+              fontSize: "14px",
+              textDecoration: "none",
+              transition: "color 150ms, border-color 150ms",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.borderColor = "#333";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "#888";
+              e.currentTarget.style.borderColor = "#1f1f1f";
+            }}
           >
             View on GitHub →
           </a>
@@ -81,7 +145,7 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
-          className="text-xs text-[#555] mt-4"
+          style={{ fontSize: "12px", color: "#555", marginTop: "16px" }}
         >
           {latestVersion} · macOS · Windows · Linux · MIT
         </motion.div>
@@ -91,21 +155,27 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-          className="mt-12 rounded-xl border border-[#1f1f1f] overflow-hidden w-full aspect-video bg-[#111] relative"
+          style={{
+            marginTop: "48px",
+            borderRadius: "12px",
+            border: "1px solid #1f1f1f",
+            overflow: "hidden",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            backgroundColor: "#111",
+            position: "relative",
+          }}
         >
-          <div className="absolute inset-0 w-full h-full">
-            <Image
-              src="/app-screenshot.avif"
-              alt="Hermes GUI"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1152px) 100vw, 1152px"
-              priority
-              unoptimized
-            />
-          </div>
+          <Image
+            src="/app-screenshot.avif"
+            alt="Hermes GUI"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1152px) 100vw, 1152px"
+            priority
+            unoptimized
+          />
         </motion.div>
-
       </div>
     </section>
   );
