@@ -1,40 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useScramble } from "use-scramble";
 import { useOS } from "@/hooks/use-os";
-
-function ScrambleHero() {
-  const phrases = [
-    "Hermes Agent.",
-    "LOCAL AI.",
-    "YOUR WORKFLOW.",
-    "NO TERMINAL.",
-    "OPEN SOURCE.",
-  ];
-  const [index, setIndex] = useState(0);
-
-  const { ref, replay } = useScramble({
-    text: phrases[index],
-    speed: 0.4,
-    tick: 1,
-    step: 1,
-    scramble: 5,
-    onAnimationEnd: () => {
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % phrases.length);
-      }, 2200);
-    },
-  });
-
-  useEffect(() => {
-    replay();
-  }, [index, replay]);
-
-  return <span ref={ref} />;
-}
 
 interface HeroClientProps {
   latestVersion: string;
@@ -52,20 +20,16 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
   const downloadUrl = `https://github.com/vaguemit/hermes-gui/releases/download/${latestVersion}/hermes-gui_${latestVersion}_${osName === 'macOS' ? 'universal' : 'x64'}${ext}`;
 
   return (
-    <section
-      id="hero"
-      className="relative flex flex-col items-center justify-center pt-[120px] pb-[80px] px-6 min-h-[100dvh]"
-    >
-      <div className="w-full max-w-[1080px] mx-auto flex flex-col items-center">
+    <section id="hero" className="w-full">
+      <div className="min-h-[85vh] flex flex-col justify-center max-w-6xl mx-auto px-6 pt-32 pb-16">
         
         {/* Eyebrow Pill */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-          className="inline-flex items-center gap-[6px] border border-[var(--color-border)] rounded-[var(--radius-sm)] px-[10px] py-[4px] font-[var(--font-mono)] text-[var(--text-mono-xs)] text-[var(--color-text-tertiary)] uppercase tracking-[0.08em] mb-[28px]"
+          className="inline-flex self-start border border-[#1f1f1f] rounded-full px-3 py-1 text-xs text-[#888] mb-6"
         >
-          <div className="w-[5px] h-[5px] rounded-full bg-[var(--color-text-tertiary)] shrink-0" />
           BUILT ON NOUS RESEARCH HERMES AGENT
         </motion.div>
 
@@ -74,20 +38,19 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-          className="hero-headline flex flex-col items-center mb-[24px]"
+          className="text-6xl font-bold tracking-tight leading-none mb-4"
         >
-          <span>A desktop GUI for</span>
-          <span className="min-h-[1.2em]"><ScrambleHero /></span>
+          Everything Hermes. Now with a UI.
         </motion.h1>
 
-        {/* Subhead */}
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-          className="hero-subhead mb-[36px]"
+          className="text-lg text-[#888] max-w-xl mb-8 leading-relaxed"
         >
-          Install, configure, and run Hermes Agent from a native desktop app. No terminal.
+          Install, configure, and run Hermes Agent from a native desktop app. No terminal required.
         </motion.p>
 
         {/* CTAs */}
@@ -95,11 +58,11 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.55, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center gap-[12px] mb-[20px]"
+          className="flex flex-col sm:flex-row gap-3"
         >
           <a
             href={downloadUrl}
-            className="inline-flex items-center justify-center bg-[var(--color-text-primary)] text-[var(--color-text-inverse)] px-[20px] py-[10px] text-[0.9375rem] font-[500] tracking-[-0.01em] hover:bg-[var(--color-accent-hover)] transition-all duration-180 hover:scale-[1.015] active:scale-98 w-full sm:w-auto"
+            className="inline-flex justify-center items-center bg-white text-black px-5 py-2.5 rounded-md text-sm font-medium hover:bg-[#e6e6e6] transition-colors duration-150"
           >
             {downloadLabel}
           </a>
@@ -107,7 +70,7 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
             href="https://github.com/vaguemit/hermes-gui"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-transparent border border-[var(--color-border)] text-[var(--color-text-secondary)] px-[19px] py-[9px] text-[0.9375rem] font-[500] tracking-[-0.01em] hover:border-[var(--color-border-strong)] hover:text-[var(--color-text-primary)] transition-all duration-180 active:scale-98 w-full sm:w-auto"
+            className="inline-flex justify-center items-center border border-[#1f1f1f] text-[#888] px-5 py-2.5 rounded-md text-sm hover:text-white hover:border-[#333] transition-colors duration-150"
           >
             View on GitHub →
           </a>
@@ -118,7 +81,7 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
-          className="version-badge mb-[80px]"
+          className="text-xs text-[#555] mt-4"
         >
           {latestVersion} · macOS · Windows · Linux · MIT
         </motion.div>
@@ -128,21 +91,15 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-          className="w-full max-w-[960px] mx-auto rounded-[4px] border border-[rgba(232,232,228,0.1)] overflow-hidden"
-          style={{ boxShadow: "var(--shadow-mockup)" }}
+          className="mt-12 rounded-xl border border-[#1f1f1f] overflow-hidden w-full aspect-video bg-[#111] relative"
         >
-          <div className="h-[28px] bg-[#0f0f0f] border-b border-[rgba(232,232,228,0.06)] flex items-center px-[12px] gap-[6px]">
-            <div className="w-[6px] h-[6px] rounded-full bg-[rgba(232,232,228,0.15)]" />
-            <div className="w-[6px] h-[6px] rounded-full bg-[rgba(232,232,228,0.15)]" />
-            <div className="w-[6px] h-[6px] rounded-full bg-[rgba(232,232,228,0.15)]" />
-          </div>
-          <div className="relative w-full aspect-[16/10] bg-[#111]">
+          <div className="absolute inset-0 w-full h-full">
             <Image
               src="/app-screenshot.avif"
               alt="Hermes GUI"
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 960px"
+              sizes="(max-width: 1152px) 100vw, 1152px"
               priority
               unoptimized
             />
