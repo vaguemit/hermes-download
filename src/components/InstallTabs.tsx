@@ -41,7 +41,7 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
   return (
     <section id="install" className="section-padding bg-[var(--color-bg)] font-mono">
       <div className="page-container" style={{ maxWidth: "800px" }}>
-        <div ref={headerRef} className="text-center mb-[48px]">
+        <div ref={headerRef} className="text-center mb-[64px]">
           <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] font-mono text-[0.8125rem] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
             ─[ INSTALLATION ]─
           </div>
@@ -70,9 +70,9 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
         </div>
 
         {/* Tab Content */}
-        <div className="space-y-[16px]">
+        <div className="space-y-[32px]">
           {/* Step 1 */}
-          <div className="relative group border border-[var(--color-border)] bg-transparent p-[24px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
+          <div className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
             <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
             <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
             <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
@@ -100,7 +100,7 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
           </div>
 
           {/* Step 2 */}
-          <div className="relative group border border-[var(--color-border)] bg-transparent p-[24px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
+          <div className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
             <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
             <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
             <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
@@ -131,7 +131,7 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
           </div>
 
           {/* Step 3 */}
-          <div className="relative group border border-[var(--color-border)] bg-transparent p-[24px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
+          <div className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
             <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
             <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
             <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
