@@ -1,11 +1,11 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
 /* Display / Headlines — Geist */
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
 
 /* Monospace — Geist Mono */
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   /* ─── Backgrounds ─── */
