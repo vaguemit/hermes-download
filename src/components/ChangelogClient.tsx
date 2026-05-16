@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { format } from "date-fns";
 import ReactMarkdown from "react-markdown";
 
 interface Release {
   id: number;
-  tag_name: string;
   name: string;
+  tag_name: string;
   published_at: string;
   body: string;
   html_url: string;
@@ -21,77 +22,104 @@ export function ChangelogClient({ releases }: ChangelogClientProps) {
 
   return (
     <section id="changelog" className="section-padding bg-[var(--color-bg)] font-mono">
-      <div className="page-container" style={{ maxWidth: "800px" }}>
-        <div className="mb-[64px]">
-          <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] font-mono text-[0.8125rem] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
-            ─[ CHANGELOG ]─
-          </div>
-          <h2 className="section-headline">
-            Version history.
-          </h2>
-        </div>
-
-        <div className="relative border-l border-[var(--color-border-strong)] ml-[4px]">
-          {releases.map((release, idx) => (
+      <div className="page-container">
+        
+        <div className="flex flex-col md:flex-row gap-[80px]">
+          
+          {/* Left Column */}
+          <div className="md:w-[35%] shrink-0">
             <motion.div
-              key={release.id}
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.3, delay: idx * 0.08, ease: "easeOut" }}
-              className="mb-[64px] last:mb-0 pl-[32px] relative"
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-[6px] border border-[var(--color-border)] rounded-[var(--radius-sm)] px-[10px] py-[4px] font-[var(--font-mono)] text-[var(--text-mono-xs)] text-[var(--color-text-tertiary)] uppercase tracking-[0.08em] mb-[28px]"
             >
-              {/* Timeline Connector */}
-              <span className="absolute -left-[4px] top-[4px] text-[var(--color-text-secondary)] text-[0.875rem] leading-none bg-[var(--color-bg)] flex items-center justify-center">├</span>
-
-              <div className="flex flex-col sm:flex-row sm:items-center gap-[12px] mb-[16px]">
-                <span className="text-[var(--color-text-primary)] text-[0.8125rem] uppercase tracking-[0.04em]">
-                  [ {release.tag_name} ]
-                </span>
-                <span className="text-[0.8125rem] text-[var(--color-text-tertiary)]">
-                  {new Date(release.published_at).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </span>
-              </div>
-
-              <h3 className="text-[1.125rem] font-medium text-[var(--color-text-primary)] mb-[24px]">
-                {release.name || release.tag_name}
-              </h3>
-
-              <div className="prose prose-invert prose-p:text-[var(--color-text-secondary)] prose-p:leading-[1.7] prose-li:text-[var(--color-text-secondary)] prose-a:text-[var(--color-text-primary)] hover:prose-a:text-[var(--color-text-primary)] hover:prose-a:bg-[var(--color-border)] prose-a:no-underline max-w-none mb-[24px] text-[0.875rem]">
-                <ReactMarkdown>
-                  {/* Truncate long bodies or just display the whole thing if it's a short changelog. */}
-                  {release.body?.length > 1000
-                    ? release.body.slice(0, 1000) + "..."
-                    : release.body || "No release notes provided."}
-                </ReactMarkdown>
-              </div>
-
-              <a
-                href={release.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-[0.8125rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-border)] px-[8px] py-[4px] transition-colors"
-              >
-                [ View full diff → ]
-              </a>
+              <div className="w-[5px] h-[5px] rounded-full bg-[var(--color-text-tertiary)] shrink-0" />
+              CHANGELOG
             </motion.div>
-          ))}
+
+            <motion.h2
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-[var(--text-display-lg)] font-[600] leading-[1.05] tracking-[-0.03em] text-[var(--color-text-primary)]"
+            >
+              What ships.
+            </motion.h2>
+          </div>
+
+          {/* Right Column (Timeline) */}
+          <div className="md:w-[65%] relative">
+            
+            {/* The Vertical Line */}
+            <div className="absolute left-[3px] top-[10px] bottom-0 w-[1px] bg-[var(--color-border)]" />
+
+            <div className="flex flex-col gap-[64px] reveal-stagger is-visible">
+              {releases.map((release, i) => {
+                const dateStr = release.published_at
+                  ? format(new Date(release.published_at), "MMMM yyyy")
+                  : "Draft";
+                
+                // Extremely simple markdown bullet parser for the body
+                const lines = release.body.split('\n');
+                const bulletLines = lines
+                  .filter(line => line.trim().startsWith('-') || line.trim().startsWith('*'))
+                  .map(line => line.replace(/^[-*]\s/, '').trim())
+                  .slice(0, 5); // limit to 5 bullets for cleanliness
+                  
+                return (
+                  <motion.div
+                    key={release.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="relative pl-[32px]"
+                  >
+                    {/* The Dot */}
+                    <div className="absolute left-0 top-[6px] w-[7px] h-[7px] rounded-full bg-[var(--color-text-primary)]" />
+                    
+                    {/* Metadata */}
+                    <div className="font-[var(--font-mono)] text-[0.75rem] text-[var(--color-text-tertiary)] tracking-[0.02em] mb-[12px]">
+                      {release.tag_name} · {dateStr}
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="font-[var(--font-sans)] text-[1rem] font-[500] text-[var(--color-text-primary)] mb-[16px] tracking-[-0.01em]">
+                      {release.name || release.tag_name}
+                    </h3>
+                    
+                    {/* Bullets */}
+                    <ul className="flex flex-col gap-[8px]">
+                      {bulletLines.map((bullet, idx) => (
+                        <li key={idx} className="flex items-start text-[0.875rem] text-[var(--color-text-secondary)] leading-[1.7]">
+                          <span className="text-[var(--color-text-tertiary)] mr-[16px]">·</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                );
+              })}
+              
+              <div className="relative pl-[32px] mt-[-16px]">
+                <div className="absolute left-0 top-[10px] w-[7px] h-[7px] rounded-full bg-[var(--color-border-strong)]" />
+                <a
+                  href="https://github.com/vaguemit/hermes-gui/releases"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-[var(--font-sans)] text-[0.875rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[180ms] flex items-center"
+                >
+                  See all releases →
+                </a>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
-        <div className="mt-[64px] ml-[32px]">
-          <a
-            href="https://github.com/vaguemit/hermes-gui/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-[0.875rem] text-[var(--color-text-primary)] border border-[var(--color-border)] hover:bg-[var(--color-text-primary)] hover:text-[var(--color-bg)] px-[16px] py-[8px] transition-colors"
-          >
-            See all releases →
-          </a>
-        </div>
       </div>
     </section>
   );
