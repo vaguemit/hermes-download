@@ -5,14 +5,14 @@ import { FeatureGrid } from "@/components/FeatureGrid";
 import { Architecture } from "@/components/Architecture";
 import { InstallTabs } from "@/components/InstallTabs";
 import { Changelog } from "@/components/Changelog";
-import { Roadmap } from "@/components/Roadmap";
 import { OpenSourceCTA } from "@/components/OpenSourceCTA";
 import { Footer } from "@/components/Footer";
-import { getLatestRelease } from "@/lib/api";
+import { getLatestRelease, getGithubStars } from "@/lib/api";
 
 export default async function Home() {
   const latestRelease = await getLatestRelease();
   const latestVersion = latestRelease?.tag_name || "v0.1.0";
+  const stars = await getGithubStars();
 
   return (
     <main className="flex min-h-screen flex-col">
@@ -23,8 +23,7 @@ export default async function Home() {
       <Architecture />
       <InstallTabs latestVersion={latestVersion} />
       <Changelog />
-      <Roadmap />
-      <OpenSourceCTA />
+      <OpenSourceCTA stars={stars} />
       <Footer />
     </main>
   );
