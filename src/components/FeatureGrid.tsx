@@ -63,10 +63,10 @@ export function FeatureGrid() {
   const isInView = useInView(headerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="features" className="py-[120px] bg-[var(--color-bg)] font-mono">
-      <div className="max-w-[1080px] mx-auto px-8">
+    <section id="features" className="section-padding bg-[var(--color-bg)] font-mono">
+      <div className="page-container">
         <div ref={headerRef} className="text-center mb-[64px]">
-          <h2 className="text-[1.5rem] font-bold text-[var(--color-text-primary)] mb-[16px]">
+          <h2 className="section-headline mb-[16px]">
             Everything Hermes.<br />
             {isInView ? <ScrambleWord word="Now with a UI." /> : <span className="opacity-0">Now with a UI.</span>}
           </h2>
