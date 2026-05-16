@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { format } from "date-fns";
-import ReactMarkdown from "react-markdown";
 
 interface Release {
   id: number;
@@ -58,7 +56,7 @@ export function ChangelogClient({ releases }: ChangelogClientProps) {
             <div className="flex flex-col gap-[64px] reveal-stagger is-visible">
               {releases.map((release, i) => {
                 const dateStr = release.published_at
-                  ? format(new Date(release.published_at), "MMMM yyyy")
+                  ? new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(new Date(release.published_at))
                   : "Draft";
                 
                 // Extremely simple markdown bullet parser for the body
