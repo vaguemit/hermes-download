@@ -4,55 +4,69 @@ import { motion } from "framer-motion";
 
 export function Architecture() {
   return (
-    <section className="w-full">
-      <div className="max-w-6xl mx-auto px-6 py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          
+    <section style={{ width: "100%" }}>
+      <div style={{ maxWidth: "1152px", margin: "0 auto", padding: "96px 24px" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "64px",
+            alignItems: "start",
+          }}
+        >
           {/* Left: Diagram */}
-          <div className="w-full flex justify-center md:justify-start">
-            <div className="flex flex-col items-center w-full max-w-sm relative">
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: "360px" }}>
               
-              <div className="w-full border border-[#1f1f1f] rounded px-3 py-4 text-center bg-[#0a0a0a] z-10 relative">
-                <div className="text-xs text-[#888] font-mono">React Renderer</div>
-              </div>
-
-              <div className="h-10 border-l border-[#1f1f1f] flex items-center justify-center relative my-1">
-                <div className="absolute bg-[#0a0a0a] text-[#555] text-[10px] px-2 font-mono ml-12">SSE</div>
-                <div className="absolute -bottom-1 w-2 h-2 border-r border-b border-[#1f1f1f] transform rotate-45"></div>
-              </div>
-
-              <div className="w-full border border-[#1f1f1f] rounded px-3 py-4 text-center bg-[#0a0a0a] z-10 relative">
-                <div className="text-xs text-[#888] font-mono">localhost:8642</div>
-              </div>
-
-              <div className="h-10 border-l border-[#1f1f1f] flex items-center justify-center relative my-1">
-                <div className="absolute -bottom-1 w-2 h-2 border-r border-b border-[#1f1f1f] transform rotate-45"></div>
-              </div>
-
-              <div className="w-full border border-[#1f1f1f] rounded px-3 py-4 text-center bg-[#0a0a0a] z-10 relative">
-                <div className="text-xs text-[#888] font-mono">Hermes Agent</div>
-              </div>
-
-              <div className="h-10 border-l border-[#1f1f1f] flex items-center justify-center relative my-1">
-                <div className="absolute bg-[#0a0a0a] text-[#555] text-[10px] px-2 font-mono ml-16">Tauri IPC</div>
-                <div className="absolute -bottom-1 w-2 h-2 border-r border-b border-[#1f1f1f] transform rotate-45"></div>
-              </div>
-
-              <div className="w-full border border-[#1f1f1f] rounded px-3 py-4 text-center bg-[#111] z-10 relative">
-                <div className="text-xs text-white font-mono font-medium">Rust Backend</div>
-              </div>
-
+              {[
+                { label: "React Renderer", bg: "#0a0a0a" },
+                { label: "localhost:8642", bg: "#0a0a0a" },
+                { label: "Hermes Agent", bg: "#0a0a0a" },
+                { label: "Rust Backend", bg: "#111" },
+              ].map((node, idx) => (
+                <div key={idx}>
+                  {idx > 0 && (
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                      <div style={{ width: "1px", height: "32px", backgroundColor: "#1f1f1f" }} />
+                      <div style={{ fontSize: "10px", color: "#555", fontFamily: "monospace", margin: "4px 0" }}>
+                        {idx === 1 ? "SSE" : idx === 3 ? "Tauri IPC" : "↓"}
+                      </div>
+                      <div style={{ width: "1px", height: "8px", backgroundColor: "#1f1f1f" }} />
+                    </div>
+                  )}
+                  <div
+                    style={{
+                      width: "100%",
+                      minWidth: "280px",
+                      border: "1px solid #1f1f1f",
+                      borderRadius: "4px",
+                      padding: "16px 12px",
+                      textAlign: "center",
+                      backgroundColor: node.bg,
+                    }}
+                  >
+                    <div style={{
+                      fontSize: "12px",
+                      color: idx === 3 ? "#fff" : "#888",
+                      fontFamily: "monospace",
+                      fontWeight: idx === 3 ? 500 : 400,
+                    }}>
+                      {node.label}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Right: Text */}
-          <div className="w-full flex flex-col items-start">
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-xs text-[#555] uppercase tracking-widest mb-4"
+              style={{ fontSize: "12px", color: "#555", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "16px" }}
             >
               HOW IT WORKS
             </motion.div>
@@ -62,29 +76,54 @@ export function Architecture() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl font-bold mb-6 text-white leading-tight"
+              style={{ fontSize: "clamp(1.5rem, 3vw, 1.875rem)", fontWeight: 700, marginBottom: "24px", color: "#fff", lineHeight: 1.2 }}
             >
               Wraps Hermes.<br />
-              Doesn't replace it.
+              Doesn&apos;t replace it.
             </motion.h2>
 
-            <div className="text-sm text-[#888] leading-7 space-y-4">
-              <motion.p initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-                Chat flows through Hermes Agent's OpenAI-compatible API server. The app adds a window, not a model.
-              </motion.p>
-              <motion.p initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-                Desktop-only tasks — installation, process management, file I/O — run through Tauri IPC to a Rust backend.
-              </motion.p>
-              <motion.p initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}>
-                The React renderer falls back gracefully in browser mode. No Rust required to explore the UI.
-              </motion.p>
-              <motion.p initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5 }}>
-                All configuration reads and writes real <code className="bg-[#111] px-1.5 py-0.5 rounded border border-[#1f1f1f]">~/.hermes</code> files. Nothing is duplicated or abstracted away.
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {[
+                "Chat flows through Hermes Agent's OpenAI-compatible API server. The app adds a window, not a model.",
+                "Desktop-only tasks — installation, process management, file I/O — run through Tauri IPC to a Rust backend.",
+                "The React renderer falls back gracefully in browser mode. No Rust required to explore the UI.",
+              ].map((text, idx) => (
+                <motion.p
+                  key={idx}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.1 }}
+                  style={{ fontSize: "14px", color: "#888", lineHeight: 1.8 }}
+                >
+                  {text}
+                </motion.p>
+              ))}
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                style={{ fontSize: "14px", color: "#888", lineHeight: 1.8 }}
+              >
+                All configuration reads and writes real{" "}
+                <code style={{ backgroundColor: "#111", padding: "2px 6px", borderRadius: "4px", border: "1px solid #1f1f1f", fontSize: "13px" }}>
+                  ~/.hermes
+                </code>{" "}
+                files. Nothing is duplicated or abstracted away.
               </motion.p>
             </div>
-
           </div>
         </div>
+
+        {/* Mobile responsive override */}
+        <style jsx>{`
+          @media (max-width: 768px) {
+            div[style*="grid-template-columns: 1fr 1fr"] {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
