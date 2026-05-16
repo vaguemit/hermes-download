@@ -15,7 +15,15 @@ export default async function Home() {
   const stars = await getGithubStars();
 
   return (
-    <main className="flex min-h-screen flex-col bg-[#0a0a0a]">
+    <main
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        flexDirection: "column",
+        backgroundColor: "#0a0a0a",
+        width: "100%",
+      }}
+    >
       <Navbar />
       <Hero />
       <TechTicker />
