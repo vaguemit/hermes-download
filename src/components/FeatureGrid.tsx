@@ -75,7 +75,7 @@ export function FeatureGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[48px]">
           {features.map((feat, idx) => (
             <motion.div
               key={idx}
@@ -83,13 +83,9 @@ export function FeatureGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.3, delay: idx * 0.06, ease: "easeOut" }}
-              className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms] ease-out text-left flex flex-col"
+              className="relative group border border-[var(--color-border)] bg-transparent p-[40px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms] ease-out text-left flex flex-col"
             >
-              {/* ASCII Corners */}
-              <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
-              <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
-              <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
-              <span className="absolute -bottom-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┘</span>
+              {/* Standard border covers it */}
 
               <div className="flex items-start justify-between mb-[20px]">
                 <h3 className="text-[0.875rem] font-medium text-[var(--color-text-primary)] leading-[1.4] max-w-[80%]">
