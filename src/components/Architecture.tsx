@@ -29,8 +29,8 @@ const diagramLines = [
 
 export function Architecture() {
   return (
-    <section className="py-[120px] bg-[var(--color-bg)] text-[var(--color-text-primary)] font-mono">
-      <div className="max-w-[1080px] mx-auto px-8">
+    <section className="section-padding bg-[var(--color-bg)] text-[var(--color-text-primary)] font-mono">
+      <div className="page-container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[80px] items-center">
           {/* Left: Diagram */}
           <div className="w-full overflow-hidden text-[0.8125rem] leading-[1.4] text-[var(--color-text-secondary)] whitespace-pre select-none">
