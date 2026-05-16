@@ -20,13 +20,13 @@ export function ChangelogClient({ releases }: ChangelogClientProps) {
   if (!releases || releases.length === 0) return null;
 
   return (
-    <section id="changelog" className="py-[120px] bg-[var(--color-bg)] font-mono">
-      <div className="max-w-[800px] mx-auto px-8">
+    <section id="changelog" className="section-padding bg-[var(--color-bg)] font-mono">
+      <div className="page-container" style={{ maxWidth: "800px" }}>
         <div className="mb-[64px]">
           <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] font-mono text-[0.8125rem] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
             ─[ CHANGELOG ]─
           </div>
-          <h2 className="text-[1.5rem] font-bold text-[var(--color-text-primary)]">
+          <h2 className="section-headline">
             Version history.
           </h2>
         </div>
