@@ -1,182 +1,151 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useScramble } from "use-scramble";
 import { useOS } from "@/hooks/use-os";
 
-export function HeroClient({ latestVersion }: { latestVersion: string }) {
-  const os = useOS();
-  const [typedText, setTypedText] = useState("");
-  const [done, setDone] = useState(false);
+function ScrambleHero() {
+  const phrases = [
+    "Hermes Agent.",
+    "LOCAL AI.",
+    "YOUR WORKFLOW.",
+    "NO TERMINAL.",
+    "OPEN SOURCE.",
+  ];
+  const [index, setIndex] = useState(0);
 
-  // Full headline — typewriter reveals it character by character
-  const fullText = "A desktop GUI for\nHermes Agent.";
+  const { ref, replay } = useScramble({
+    text: phrases[index],
+    speed: 0.4,
+    tick: 1,
+    step: 1,
+    scramble: 5,
+    onAnimationEnd: () => {
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % phrases.length);
+      }, 2200);
+    },
+  });
 
   useEffect(() => {
-    let i = 0;
-    const iv = setInterval(() => {
-      i++;
-      setTypedText(fullText.slice(0, i));
-      if (i >= fullText.length) { clearInterval(iv); setDone(true); }
-    }, 45);
-    return () => clearInterval(iv);
-  }, []);
+    replay();
+  }, [index, replay]);
 
-  // Fix vv0.1.0 — tag_name from GitHub already includes the "v" prefix
-  const ver = latestVersion.startsWith("v") ? latestVersion : `v${latestVersion}`;
+  return <span ref={ref} />;
+}
+
+interface HeroClientProps {
+  latestVersion: string;
+}
+
+export function HeroClient({ latestVersion }: HeroClientProps) {
+  const os = useOS();
+
+  let osName = "macOS";
+  let ext = ".dmg";
+  if (os === "Windows") { osName = "Windows"; ext = ".msi"; }
+  if (os === "Linux") { osName = "Linux"; ext = ".AppImage"; }
+
+  const downloadLabel = `Download for ${osName} ↓`;
+  const downloadUrl = `https://github.com/vaguemit/hermes-gui/releases/download/${latestVersion}/hermes-gui_${latestVersion}_${osName === 'macOS' ? 'universal' : 'x64'}${ext}`;
 
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] flex flex-col items-center justify-center font-mono"
+      className="relative flex flex-col items-center justify-center pt-[120px] pb-[80px] px-6 min-h-[100dvh]"
     >
-      {/* ── Centered container ── */}
-      <div className="page-container flex flex-col items-center text-center pt-[88px] pb-20">
-
-        {/* Badge */}
+      <div className="w-full max-w-[1080px] mx-auto flex flex-col items-center">
+        
+        {/* Eyebrow Pill */}
         <motion.div
-          initial={{ opacity: 0, y: -6 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="inline-block text-[var(--color-text-tertiary)] text-[0.6875rem] border border-[var(--color-border)] px-4 py-1.5 mb-8 uppercase tracking-widest select-none"
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+          className="inline-flex items-center gap-[6px] border border-[var(--color-border)] rounded-[var(--radius-sm)] px-[10px] py-[4px] font-[var(--font-mono)] text-[var(--text-mono-xs)] text-[var(--color-text-tertiary)] uppercase tracking-[0.08em] mb-[28px]"
         >
-          [ HERMES-GUI · {ver} · MIT License ]
+          <div className="w-[5px] h-[5px] rounded-full bg-[var(--color-text-tertiary)] shrink-0" />
+          BUILT ON NOUS RESEARCH HERMES AGENT
         </motion.div>
 
-        {/* Headline — typewriter */}
-        <h1
-          className="font-bold text-[var(--color-text-primary)] leading-[1.1] mb-6 whitespace-pre-line"
-          style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", minHeight: "2.4em" }}
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          className="hero-headline flex flex-col items-center mb-[24px]"
         >
-          {typedText}
-          {!done && <span className="cursor text-[var(--color-text-primary)]">█</span>}
-        </h1>
+          <span>A desktop GUI for</span>
+          <span className="min-h-[1.2em]"><ScrambleHero /></span>
+        </motion.h1>
 
         {/* Subhead */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.7 }}
-          className="text-[1rem] text-[var(--color-text-secondary)] max-w-[580px] leading-[1.8] mb-10"
+          transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+          className="hero-subhead mb-[36px]"
         >
-          Install, configure, and run Hermes Agent from a native desktop app.
-          No terminal required.
+          Install, configure, and run Hermes Agent from a native desktop app. No terminal.
         </motion.p>
 
-        {/* CTA buttons */}
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.9 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8"
+          transition={{ duration: 0.4, delay: 0.55, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row items-center gap-[12px] mb-[20px]"
         >
-          {/* Primary — white fill */}
           <a
-            id="cta-download"
-            href="#install"
-            className="select-none inline-flex items-center justify-center
-              bg-[var(--color-text-primary)] text-[var(--color-bg)]
-              hover:bg-[var(--color-accent-hover)]
-              px-8 py-3 text-[0.9375rem] font-semibold
-              transition-colors duration-150 min-w-[220px]"
+            href={downloadUrl}
+            className="inline-flex items-center justify-center bg-[var(--color-text-primary)] text-[var(--color-text-inverse)] px-[20px] py-[10px] text-[0.9375rem] font-[500] tracking-[-0.01em] hover:bg-[var(--color-accent-hover)] transition-all duration-180 hover:scale-[1.015] active:scale-98 w-full sm:w-auto"
           >
-            Download for {os !== "Unknown" ? os : "Windows"} ↓
+            {downloadLabel}
           </a>
-
-          {/* Secondary — outline */}
           <a
-            id="cta-github"
             href="https://github.com/vaguemit/hermes-gui"
             target="_blank"
             rel="noopener noreferrer"
-            className="select-none inline-flex items-center justify-center
-              border border-[var(--color-border)]
-              text-[var(--color-text-secondary)]
-              hover:border-[var(--color-border-strong)]
-              hover:text-[var(--color-text-primary)]
-              px-8 py-3 text-[0.9375rem]
-              transition-colors duration-150 min-w-[220px]"
+            className="inline-flex items-center justify-center bg-transparent border border-[var(--color-border)] text-[var(--color-text-secondary)] px-[19px] py-[9px] text-[0.9375rem] font-[500] tracking-[-0.01em] hover:border-[var(--color-border-strong)] hover:text-[var(--color-text-primary)] transition-all duration-180 active:scale-98 w-full sm:w-auto"
           >
             View on GitHub →
           </a>
         </motion.div>
 
-        {/* Version meta */}
-        <motion.p
+        {/* Version String */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.1 }}
-          className="text-[0.75rem] text-[var(--color-text-tertiary)] mb-16 select-none"
+          transition={{ duration: 0.3, delay: 0.7, ease: "easeOut" }}
+          className="version-badge mb-[80px]"
         >
-          {ver} · macOS · Windows · Linux · MIT License
-        </motion.p>
+          {latestVersion} · macOS · Windows · Linux · MIT
+        </motion.div>
 
-        {/* ── App Mockup ── */}
+        {/* Mockup */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.3, duration: 0.55 }}
-          className="w-full border border-[var(--color-border)] bg-[var(--color-surface)]"
-          style={{
-            boxShadow:
-              "0 0 0 1px rgba(255,255,255,0.04), 0 24px 80px rgba(0,0,0,0.7)",
-          }}
+          transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
+          className="w-full max-w-[960px] mx-auto rounded-[4px] border border-[rgba(232,232,228,0.1)] overflow-hidden"
+          style={{ boxShadow: "var(--shadow-mockup)" }}
         >
-          {/* ── Window chrome ── */}
-          <div className="flex items-center gap-3 px-5 py-3 border-b border-[var(--color-border)] bg-[var(--color-bg)]">
-            {/* Traffic lights (square, terminal style) */}
-            <div className="flex gap-2">
-              <div className="w-3 h-3 border border-[var(--color-border)]" />
-              <div className="w-3 h-3 border border-[var(--color-border)]" />
-              <div className="w-3 h-3 border border-[var(--color-border)]" />
-            </div>
-            <span className="mx-auto text-[0.6875rem] text-[var(--color-text-tertiary)] uppercase tracking-[0.15em]">
-              hermes-gui — conversation
-            </span>
+          <div className="h-[28px] bg-[#0f0f0f] border-b border-[rgba(232,232,228,0.06)] flex items-center px-[12px] gap-[6px]">
+            <div className="w-[6px] h-[6px] rounded-full bg-[rgba(232,232,228,0.15)]" />
+            <div className="w-[6px] h-[6px] rounded-full bg-[rgba(232,232,228,0.15)]" />
+            <div className="w-[6px] h-[6px] rounded-full bg-[rgba(232,232,228,0.15)]" />
           </div>
-
-          {/* ── App body ── */}
-          <div className="flex" style={{ minHeight: "300px" }}>
-
-            {/* Sidebar with labels */}
-            <div className="w-16 border-r border-[var(--color-border)] flex flex-col items-center py-5 gap-6 shrink-0">
-              {[
-                { icon: "≡", label: "Chat" },
-                { icon: "⌘", label: "Cmds" },
-                { icon: "◈", label: "Setup" },
-              ].map(({ icon, label }) => (
-                <div key={label} className="flex flex-col items-center gap-1">
-                  <span className="text-[var(--color-text-secondary)] text-base leading-none">{icon}</span>
-                  <span className="text-[0.5rem] text-[var(--color-text-tertiary)] uppercase tracking-widest">{label}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Message area */}
-            <div className="flex-1 flex flex-col justify-end px-6 py-6 gap-5">
-              {/* User message */}
-              <div className="flex gap-3 items-start">
-                <div className="w-7 h-7 shrink-0 border border-[var(--color-border)] flex items-center justify-center text-[0.5625rem] text-[var(--color-text-tertiary)] select-none">
-                  U
-                </div>
-                <div className="border border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-[0.8125rem] text-[var(--color-text-secondary)] max-w-[60%]">
-                  What is the difference between Tauri IPC and a standard WebSocket?
-                </div>
-              </div>
-
-              {/* Agent reply */}
-              <div className="flex gap-3 items-start self-end flex-row-reverse">
-                <div className="w-7 h-7 shrink-0 bg-[var(--color-text-primary)] text-[var(--color-bg)] flex items-center justify-center text-[0.5625rem] font-bold select-none">
-                  H
-                </div>
-                <div className="border border-[var(--color-border-strong)] bg-[var(--color-surface)] px-4 py-3 text-[0.8125rem] text-[var(--color-text-primary)] max-w-[60%]">
-                  Tauri IPC is a direct OS-native channel between the webview and Rust
-                  backend — no port binding, no network stack. WebSocket runs over TCP
-                  and requires a local listener. IPC is faster and more secure for
-                  desktop apps.
-                </div>
-              </div>
-            </div>
+          <div className="relative w-full aspect-[16/10] bg-[#111]">
+            <Image
+              src="/app-screenshot.avif"
+              alt="Hermes GUI"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 960px"
+              priority
+              unoptimized
+            />
           </div>
         </motion.div>
 
