@@ -30,7 +30,7 @@ export function Roadmap() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[32px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[48px]">
           {items.map((item, idx) => (
             <motion.div
               key={idx}
@@ -38,12 +38,9 @@ export function Roadmap() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.3, delay: idx * 0.1, ease: "easeOut" }}
-              className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-200"
+              className="relative group border border-[var(--color-border)] bg-transparent p-[40px] hover:border-[var(--color-border-strong)] transition-colors duration-200"
             >
-              <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
-              <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
-              <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
-              <span className="absolute -bottom-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┘</span>
+
               
               <div className="absolute top-[16px] right-[16px] text-[0.6875rem] text-[var(--color-text-tertiary)] group-hover:text-[var(--color-text-secondary)] transition-colors">
                 [ TBD ]
