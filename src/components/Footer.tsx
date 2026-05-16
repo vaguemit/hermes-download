@@ -1,68 +1,52 @@
-"use client";
-
 import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="w-full pt-[80px] pb-[48px] px-6 bg-[var(--color-bg)] border-t border-[var(--color-border-subtle)] font-[var(--font-sans)]">
-      <div className="w-full max-w-[1080px] mx-auto">
-        
-        <div className="flex flex-col md:flex-row gap-[64px] md:gap-0 justify-between">
+    <footer className="w-full border-t border-[#1f1f1f] bg-[#0a0a0a]">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          {/* Left Column */}
-          <div className="md:w-[40%] flex flex-col">
-            <Link
-              href="#hero"
-              className="text-[0.875rem] font-[500] text-[var(--color-text-primary)] tracking-[0.04em] mb-[12px] hover:opacity-80 transition-opacity"
-            >
+          {/* Col 1 */}
+          <div className="flex flex-col gap-4">
+            <Link href="/" className="text-sm font-medium text-white hover:text-[#ccc] transition-colors duration-150">
               hermes gui
             </Link>
-            <p className="text-[0.875rem] text-[var(--color-text-tertiary)] leading-[1.6] max-w-[260px]">
-              A desktop interface for Nous Research Hermes Agent.<br />
-              MIT License.
+            <p className="text-sm text-[#555]">
+              A desktop GUI for Nous Research Hermes Agent.
             </p>
+            <div className="inline-block border border-[#1f1f1f] rounded text-[10px] uppercase text-[#555] px-2 py-0.5 mt-2 w-max">
+              MIT License
+            </div>
           </div>
 
-          {/* Right Column */}
-          <div className="md:w-[60%] flex gap-[80px]">
-            
-            {/* Sub-column 1 */}
-            <div className="flex flex-col">
-              <div className="font-[var(--font-mono)] text-[0.6875rem] tracking-[0.1em] text-[var(--color-text-tertiary)] uppercase mb-[16px]">
-                Features
-              </div>
-              <div className="flex flex-col gap-[10px]">
-                <Link href="#install" className="text-[0.875rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
-                  Install
-                </Link>
-                <Link href="/docs" className="text-[0.875rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
-                  Docs
-                </Link>
-              </div>
+          {/* Col 2 */}
+          <div className="flex flex-col gap-4">
+            <div className="text-xs text-[#555] uppercase tracking-widest">RESOURCES</div>
+            <div className="flex flex-col gap-2">
+              <a href="https://github.com/vaguemit/hermes-gui" target="_blank" rel="noopener noreferrer" className="text-sm text-[#888] hover:text-white transition-colors duration-150">GitHub Repository</a>
+              <Link href="/docs" className="text-sm text-[#888] hover:text-white transition-colors duration-150">Documentation</Link>
+              <a href="https://github.com/vaguemit/hermes-gui/releases" target="_blank" rel="noopener noreferrer" className="text-sm text-[#888] hover:text-white transition-colors duration-150">Releases</a>
+              <a href="https://nousresearch.com/" target="_blank" rel="noopener noreferrer" className="text-sm text-[#888] hover:text-white transition-colors duration-150">Nous Research</a>
             </div>
-
-            {/* Sub-column 2 */}
-            <div className="flex flex-col">
-              <div className="font-[var(--font-mono)] text-[0.6875rem] tracking-[0.1em] text-[var(--color-text-tertiary)] uppercase mb-[16px]">
-                GitHub
-              </div>
-              <div className="flex flex-col gap-[10px]">
-                <Link href="#changelog" className="text-[0.875rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
-                  Changelog
-                </Link>
-                <a href="https://github.com/vaguemit/hermes-gui/issues" target="_blank" rel="noopener noreferrer" className="text-[0.875rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors">
-                  Issues
-                </a>
-              </div>
-            </div>
-
           </div>
+
+          {/* Col 3 */}
+          <div className="flex flex-col gap-4">
+            <div className="text-xs text-[#555] uppercase tracking-widest">STACK</div>
+            <div className="text-sm text-[#555] leading-relaxed">
+              Tauri v2<br />
+              React & Next.js<br />
+              Rust Backend<br />
+              Tailwind CSS
+            </div>
+          </div>
+
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-[48px] pt-[24px] border-t border-[var(--color-border-subtle)] flex flex-col md:flex-row justify-between items-center gap-[16px] text-[0.75rem] text-[var(--color-text-tertiary)]">
-          <div>© {new Date().getFullYear()} Hermes GUI Contributors</div>
-          <div>MIT License · Not affiliated with Anthropic or OpenAI.</div>
+        {/* Bottom */}
+        <div className="border-t border-[#1f1f1f] mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#555]">
+          <div>&copy; {new Date().getFullYear()} Hermes GUI. Open source software.</div>
+          <div>Built with ♥ for the local AI community.</div>
         </div>
 
       </div>
