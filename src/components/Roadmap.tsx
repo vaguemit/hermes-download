@@ -19,13 +19,13 @@ const items = [
 
 export function Roadmap() {
   return (
-    <section className="py-[120px] bg-[var(--color-bg)] border-t border-[var(--color-border)] font-mono">
-      <div className="max-w-[1080px] mx-auto px-8">
+    <section className="section-padding bg-[var(--color-bg)] border-t border-[var(--color-border)] font-mono">
+      <div className="page-container">
         <div className="text-center mb-[64px]">
           <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] font-mono text-[0.8125rem] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
             ─[ ROADMAP ]─
           </div>
-          <h2 className="text-[1.5rem] font-bold text-[var(--color-text-primary)]">
+          <h2 className="section-headline">
             What&apos;s coming.
           </h2>
         </div>
