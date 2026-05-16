@@ -1,0 +1,1133 @@
+Title: MCP (Model Context Protocol) | Hermes Agent
+
+Description: Connect Hermes Agent to external tool servers via MCP — and control exactly which MCP tools Hermes loads
+
+Source: https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp
+
+---
+
+[Skip to main content](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#__docusaurus_skipToContent_fallback)
+[Hermes Agent](https://hermes-agent.nousresearch.com/docs/)
+[Docs](https://hermes-agent.nousresearch.com/docs/user-stories)
+[Skills](https://hermes-agent.nousresearch.com/docs/skills)
+[English](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+- [English](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+- [简体中文](https://hermes-agent.nousresearch.com/docs/zh-Hans/user-guide/features/mcp)
+[English](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+[简体中文](https://hermes-agent.nousresearch.com/docs/zh-Hans/user-guide/features/mcp)
+[Home](https://hermes-agent.nousresearch.com)
+[GitHub](https://github.com/NousResearch/hermes-agent)
+[Discord](https://discord.gg/NousResearch)
+- [User Stories & Use Cases](https://hermes-agent.nousresearch.com/docs/user-stories)
+- [Getting Started](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)
+- [Using Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/cli)
+- [Features](https://hermes-agent.nousresearch.com/docs/user-guide/features/overview)
+- [Messaging Platforms](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/)
+- [Integrations](https://hermes-agent.nousresearch.com/docs/integrations/)[Overview](https://hermes-agent.nousresearch.com/docs/integrations/)[AI Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers)[MCP (Model Context Protocol)](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)[ACP Editor Integration](https://hermes-agent.nousresearch.com/docs/user-guide/features/acp)[API Server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server)[Honcho Memory](https://hermes-agent.nousresearch.com/docs/user-guide/features/honcho)[Provider Routing](https://hermes-agent.nousresearch.com/docs/user-guide/features/provider-routing)[Fallback Providers](https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers)[Credential Pools](https://hermes-agent.nousresearch.com/docs/user-guide/features/credential-pools)
+- [Overview](https://hermes-agent.nousresearch.com/docs/integrations/)
+- [AI Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+- [MCP (Model Context Protocol)](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+- [ACP Editor Integration](https://hermes-agent.nousresearch.com/docs/user-guide/features/acp)
+- [API Server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server)
+- [Honcho Memory](https://hermes-agent.nousresearch.com/docs/user-guide/features/honcho)
+- [Provider Routing](https://hermes-agent.nousresearch.com/docs/user-guide/features/provider-routing)
+- [Fallback Providers](https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers)
+- [Credential Pools](https://hermes-agent.nousresearch.com/docs/user-guide/features/credential-pools)
+- [Guides & Tutorials](https://hermes-agent.nousresearch.com/docs/guides/tips)
+- [Developer Guide](https://hermes-agent.nousresearch.com/docs/developer-guide/contributing)
+- [Reference](https://hermes-agent.nousresearch.com/docs/reference/cli-commands)
+[User Stories & Use Cases](https://hermes-agent.nousresearch.com/docs/user-stories)
+[Getting Started](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)
+[Using Hermes](https://hermes-agent.nousresearch.com/docs/user-guide/cli)
+[Features](https://hermes-agent.nousresearch.com/docs/user-guide/features/overview)
+[Messaging Platforms](https://hermes-agent.nousresearch.com/docs/user-guide/messaging/)
+[Integrations](https://hermes-agent.nousresearch.com/docs/integrations/)
+- [Overview](https://hermes-agent.nousresearch.com/docs/integrations/)
+- [AI Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+- [MCP (Model Context Protocol)](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+- [ACP Editor Integration](https://hermes-agent.nousresearch.com/docs/user-guide/features/acp)
+- [API Server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server)
+- [Honcho Memory](https://hermes-agent.nousresearch.com/docs/user-guide/features/honcho)
+- [Provider Routing](https://hermes-agent.nousresearch.com/docs/user-guide/features/provider-routing)
+
+- [Fallback Providers](https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers)
+- [Credential Pools](https://hermes-agent.nousresearch.com/docs/user-guide/features/credential-pools)
+[Overview](https://hermes-agent.nousresearch.com/docs/integrations/)
+[AI Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+[MCP (Model Context Protocol)](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+[ACP Editor Integration](https://hermes-agent.nousresearch.com/docs/user-guide/features/acp)
+[API Server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server)
+[Honcho Memory](https://hermes-agent.nousresearch.com/docs/user-guide/features/honcho)
+[Provider Routing](https://hermes-agent.nousresearch.com/docs/user-guide/features/provider-routing)
+[Fallback Providers](https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers)
+[Credential Pools](https://hermes-agent.nousresearch.com/docs/user-guide/features/credential-pools)
+[Guides & Tutorials](https://hermes-agent.nousresearch.com/docs/guides/tips)
+[Developer Guide](https://hermes-agent.nousresearch.com/docs/developer-guide/contributing)
+[Reference](https://hermes-agent.nousresearch.com/docs/reference/cli-commands)
+- https://hermes-agent.nousresearch.com/docs/
+- Integrations
+- MCP (Model Context Protocol)
+
+MCP lets Hermes Agent connect to external tool servers so the agent can use tools that live outside Hermes itself — GitHub, databases, file systems, browser stacks, internal APIs, and more.
+If you have ever wanted Hermes to use a tool that already exists somewhere else, MCP is usually the cleanest way to do it.
+
+## What MCP gives you[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-mcp-gives-you)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-mcp-gives-you)
+- Access to external tool ecosystems without writing a native Hermes tool first
+- Local stdio servers and remote HTTP MCP servers in the same config
+- Automatic tool discovery and registration at startup
+- Utility wrappers for MCP resources and prompts when supported by the server
+- Per-server filtering so you can expose only the MCP tools you actually want Hermes to see
+
+## Quick start[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start)
+1. Install MCP support (already included if you used the standard install script):
+
+```
+cd ~/.hermes/hermes-agentuv pip install -e ".[mcp]"
+```
+
+
+```
+cd ~/.hermes/hermes-agentuv pip install -e ".[mcp]"
+```
+
+1. Add an MCP server to ~/.hermes/config.yaml:
+
+```
+~/.hermes/config.yaml
+```
+
+
+```
+mcp_servers: filesystem: command: "npx" args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
+```
+
+
+```
+mcp_servers: filesystem: command: "npx" args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
+```
+
+1. Start Hermes:
+
+```
+hermes chat
+```
+
+
+```
+hermes chat
+```
+
+1. Ask Hermes to use the MCP-backed capability.
+For example:
+
+```
+List the files in /home/user/projects and summarize the repo structure.
+```
+
+
+```
+List the files in /home/user/projects and summarize the repo structure.
+```
+
+Hermes will discover the MCP server's tools and use them like any other tool.
+
+## Two kinds of MCP servers[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#two-kinds-of-mcp-servers)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#two-kinds-of-mcp-servers)
+
+### Stdio servers[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-servers)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-servers)
+Stdio servers run as local subprocesses and talk over stdin/stdout.
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***"
+```
+
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***"
+```
+
+Use stdio servers when:
+- the server is installed locally
+- you want low-latency access to local resources
+- you are following MCP server docs that show command, args, and env
+
+```
+command
+```
+
+
+```
+args
+```
+
+
+```
+env
+```
+
+### HTTP servers[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#http-servers)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#http-servers)
+HTTP MCP servers are remote endpoints Hermes connects to directly.
+
+```
+mcp_servers: remote_api: url: "https://mcp.example.com/mcp" headers: Authorization: "Bearer ***"
+```
+
+
+```
+mcp_servers: remote_api: url: "https://mcp.example.com/mcp" headers: Authorization: "Bearer ***"
+```
+
+Use HTTP servers when:
+- the MCP server is hosted elsewhere
+- your organization exposes internal MCP endpoints
+- you do not want Hermes spawning a local subprocess for that integration
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#basic-configuration-reference)
+Hermes reads MCP config from ~/.hermes/config.yaml under mcp_servers.
+
+```
+~/.hermes/config.yaml
+```
+
+
+```
+mcp_servers
+```
+
+### Common keys[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#common-keys)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#common-keys)
+
+```
+command
+```
+
+
+```
+args
+```
+
+
+```
+env
+```
+
+
+```
+url
+```
+
+
+```
+headers
+```
+
+
+```
+timeout
+```
+
+
+```
+connect_timeout
+```
+
+
+```
+enabled
+```
+
+
+```
+false
+```
+
+
+```
+supports_parallel_tool_calls
+```
+
+
+```
+true
+```
+
+
+```
+tools
+```
+
+### Minimal stdio example[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-stdio-example)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-stdio-example)
+
+```
+mcp_servers: filesystem: command: "npx" args: ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+```
+
+
+```
+mcp_servers: filesystem: command: "npx" args: ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+```
+
+### Minimal HTTP example[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-http-example)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-http-example)
+
+```
+mcp_servers: company_api: url: "https://mcp.internal.example.com" headers: Authorization: "Bearer ***"
+```
+
+
+```
+mcp_servers: company_api: url: "https://mcp.internal.example.com" headers: Authorization: "Bearer ***"
+```
+
+## How Hermes registers MCP tools[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-hermes-registers-mcp-tools)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-hermes-registers-mcp-tools)
+Hermes prefixes MCP tools so they do not collide with built-in names:
+
+```
+mcp_<server_name>_<tool_name>
+```
+
+
+```
+mcp_<server_name>_<tool_name>
+```
+
+Examples:
+
+```
+filesystem
+```
+
+
+```
+read_file
+```
+
+
+```
+mcp_filesystem_read_file
+```
+
+
+```
+github
+```
+
+
+```
+create-issue
+```
+
+
+```
+mcp_github_create_issue
+```
+
+
+```
+my-api
+```
+
+
+```
+query.data
+```
+
+
+```
+mcp_my_api_query_data
+```
+
+In practice, you usually do not need to call the prefixed name manually — Hermes sees the tool and chooses it during normal reasoning.
+
+## MCP utility tools[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-utility-tools)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-utility-tools)
+When supported, Hermes also registers utility tools around MCP resources and prompts:
+- list_resources
+- read_resource
+- list_prompts
+- get_prompt
+
+```
+list_resources
+```
+
+
+```
+read_resource
+```
+
+
+```
+list_prompts
+```
+
+
+```
+get_prompt
+```
+
+These are registered per server with the same prefix pattern, for example:
+- mcp_github_list_resources
+- mcp_github_get_prompt
+
+```
+mcp_github_list_resources
+```
+
+
+```
+mcp_github_get_prompt
+```
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#important)
+These utility tools are now capability-aware:
+- Hermes only registers resource utilities if the MCP session actually supports resource operations
+- Hermes only registers prompt utilities if the MCP session actually supports prompt operations
+So a server that exposes callable tools but no resources/prompts will not get those extra wrappers.
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#per-server-filtering)
+You can control which tools each MCP server contributes to Hermes, allowing fine-grained management of your tool namespace.
+
+### Disable a server entirely[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#disable-a-server-entirely)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#disable-a-server-entirely)
+
+```
+mcp_servers: legacy: url: "https://mcp.legacy.internal" enabled: false
+```
+
+
+```
+mcp_servers: legacy: url: "https://mcp.legacy.internal" enabled: false
+```
+
+If enabled: false, Hermes skips the server completely and does not even attempt a connection.
+
+```
+enabled: false
+```
+
+### Whitelist server tools[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#whitelist-server-tools)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#whitelist-server-tools)
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***" tools: include: [create_issue, list_issues]
+```
+
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***" tools: include: [create_issue, list_issues]
+```
+
+Only those MCP server tools are registered.
+
+### Blacklist server tools[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#blacklist-server-tools)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#blacklist-server-tools)
+
+```
+mcp_servers: stripe: url: "https://mcp.stripe.com" tools: exclude: [delete_customer]
+```
+
+
+```
+mcp_servers: stripe: url: "https://mcp.stripe.com" tools: exclude: [delete_customer]
+```
+
+All server tools are registered except the excluded ones.
+
+### Precedence rule[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#precedence-rule)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#precedence-rule)
+If both are present:
+
+```
+tools: include: [create_issue] exclude: [create_issue, delete_issue]
+```
+
+
+```
+tools: include: [create_issue] exclude: [create_issue, delete_issue]
+```
+
+include wins.
+
+```
+include
+```
+
+### Filter utility tools too[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filter-utility-tools-too)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filter-utility-tools-too)
+You can also separately disable Hermes-added utility wrappers:
+
+```
+mcp_servers: docs: url: "https://mcp.docs.example.com" tools: prompts: false resources: false
+```
+
+
+```
+mcp_servers: docs: url: "https://mcp.docs.example.com" tools: prompts: false resources: false
+```
+
+That means:
+- tools.resources: false disables list_resources and read_resource
+- tools.prompts: false disables list_prompts and get_prompt
+
+```
+tools.resources: false
+```
+
+
+```
+list_resources
+```
+
+
+```
+read_resource
+```
+
+
+```
+tools.prompts: false
+```
+
+
+```
+list_prompts
+```
+
+
+```
+get_prompt
+```
+
+### Full example[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#full-example)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#full-example)
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***" tools: include: [create_issue, list_issues, search_code] prompts: false stripe: url: "https://mcp.stripe.com" headers: Authorization: "Bearer ***" tools: exclude: [delete_customer] resources: false legacy: url: "https://mcp.legacy.internal" enabled: false
+```
+
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***" tools: include: [create_issue, list_issues, search_code] prompts: false stripe: url: "https://mcp.stripe.com" headers: Authorization: "Bearer ***" tools: exclude: [delete_customer] resources: false legacy: url: "https://mcp.legacy.internal" enabled: false
+```
+
+## What happens if everything is filtered out?[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-happens-if-everything-is-filtered-out)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-happens-if-everything-is-filtered-out)
+If your config filters out all callable tools and disables or omits all supported utilities, Hermes does not create an empty runtime MCP toolset for that server.
+That keeps the tool list clean.
+
+## Runtime behavior[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#runtime-behavior)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#runtime-behavior)
+
+### Discovery time[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#discovery-time)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#discovery-time)
+Hermes discovers MCP servers at startup and registers their tools into the normal tool registry.
+
+### Dynamic Tool Discovery[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#dynamic-tool-discovery)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#dynamic-tool-discovery)
+MCP servers can notify Hermes when their available tools change at runtime by sending a notifications/tools/list_changed notification. When Hermes receives this notification, it automatically re-fetches the server's tool list and updates the registry — no manual /reload-mcp required.
+
+```
+notifications/tools/list_changed
+```
+
+
+```
+/reload-mcp
+```
+
+This is useful for MCP servers whose capabilities change dynamically (e.g. a server that adds tools when a new database schema is loaded, or removes tools when a service goes offline).
+The refresh is lock-protected so rapid-fire notifications from the same server don't cause overlapping refreshes. Prompt and resource change notifications (prompts/list_changed, resources/list_changed) are received but not yet acted on.
+
+```
+prompts/list_changed
+```
+
+
+```
+resources/list_changed
+```
+
+### Reloading[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#reloading)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#reloading)
+If you change MCP config, use:
+
+```
+/reload-mcp
+```
+
+
+```
+/reload-mcp
+```
+
+This reloads MCP servers from config and refreshes the available tool list. For runtime tool changes pushed by the server itself, see [Dynamic Tool Discovery](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#dynamic-tool-discovery) above.
+
+### Toolsets[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#toolsets)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#toolsets)
+Each configured MCP server also creates a runtime toolset when it contributes at least one registered tool:
+
+```
+mcp-<server>
+```
+
+
+```
+mcp-<server>
+```
+
+That makes MCP servers easier to reason about at the toolset level.
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#security-model)
+
+### Stdio env filtering[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-env-filtering)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-env-filtering)
+For stdio servers, Hermes does not blindly pass your full shell environment.
+Only explicitly configured env plus a safe baseline are passed through. This reduces accidental secret leakage.
+
+```
+env
+```
+
+### Config-level exposure control[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#config-level-exposure-control)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#config-level-exposure-control)
+The new filtering support is also a security control:
+- disable dangerous tools you do not want the model to see
+- expose only a minimal whitelist for a sensitive server
+- disable resource/prompt wrappers when you do not want that surface exposed
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#example-use-cases)
+
+### GitHub server with a minimal issue-management surface[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#github-server-with-a-minimal-issue-management-surface)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#github-server-with-a-minimal-issue-management-surface)
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***" tools: include: [list_issues, create_issue, update_issue] prompts: false resources: false
+```
+
+
+```
+mcp_servers: github: command: "npx" args: ["-y", "@modelcontextprotocol/server-github"] env: GITHUB_PERSONAL_ACCESS_TOKEN: "***" tools: include: [list_issues, create_issue, update_issue] prompts: false resources: false
+```
+
+Use it like:
+
+```
+Show me open issues labeled bug, then draft a new issue for the flaky MCP reconnection behavior.
+```
+
+
+```
+Show me open issues labeled bug, then draft a new issue for the flaky MCP reconnection behavior.
+```
+
+### Stripe server with dangerous actions removed[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stripe-server-with-dangerous-actions-removed)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stripe-server-with-dangerous-actions-removed)
+
+```
+mcp_servers: stripe: url: "https://mcp.stripe.com" headers: Authorization: "Bearer ***" tools: exclude: [delete_customer, refund_payment]
+```
+
+
+```
+mcp_servers: stripe: url: "https://mcp.stripe.com" headers: Authorization: "Bearer ***" tools: exclude: [delete_customer, refund_payment]
+```
+
+Use it like:
+
+```
+Look up the last 10 failed payments and summarize common failure reasons.
+```
+
+
+```
+Look up the last 10 failed payments and summarize common failure reasons.
+```
+
+### Filesystem server for a single project root[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filesystem-server-for-a-single-project-root)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filesystem-server-for-a-single-project-root)
+
+```
+mcp_servers: project_fs: command: "npx" args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/my-project"]
+```
+
+
+```
+mcp_servers: project_fs: command: "npx" args: ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/my-project"]
+```
+
+Use it like:
+
+```
+Inspect the project root and explain the directory layout.
+```
+
+
+```
+Inspect the project root and explain the directory layout.
+```
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#troubleshooting)
+
+### MCP server not connecting[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-server-not-connecting)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-server-not-connecting)
+Check:
+
+```
+# Verify MCP deps are installed (already included in standard install)cd ~/.hermes/hermes-agent && uv pip install -e ".[mcp]"node --versionnpx --version
+```
+
+
+```
+# Verify MCP deps are installed (already included in standard install)cd ~/.hermes/hermes-agent && uv pip install -e ".[mcp]"node --versionnpx --version
+```
+
+Then verify your config and restart Hermes.
+
+### Tools not appearing[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#tools-not-appearing)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#tools-not-appearing)
+Possible causes:
+- the server failed to connect
+- discovery failed
+- your filter config excluded the tools
+- the utility capability does not exist on that server
+- the server is disabled with enabled: false
+
+```
+enabled: false
+```
+
+If you are intentionally filtering, this is expected.
+
+### Why didn't resource or prompt utilities appear?[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#why-didnt-resource-or-prompt-utilities-appear)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#why-didnt-resource-or-prompt-utilities-appear)
+Because Hermes now only registers those wrappers when both are true:
+1. your config allows them
+2. the server session actually supports the capability
+This is intentional and keeps the tool list honest.
+
+## Parallel Tool Calls[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#parallel-tool-calls)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#parallel-tool-calls)
+By default, MCP tools run sequentially — one at a time. If your MCP server exposes tools that are safe to run concurrently (e.g. read-only queries, independent API calls), you can opt-in to parallel execution:
+
+```
+mcp_servers: docs: command: "docs-server" supports_parallel_tool_calls: true
+```
+
+
+```
+mcp_servers: docs: command: "docs-server" supports_parallel_tool_calls: true
+```
+
+When supports_parallel_tool_calls is true, Hermes may execute multiple tools from that server at the same time within a single tool-call batch, just like it does for built-in read-only tools (web_search, read_file, etc.).
+
+```
+supports_parallel_tool_calls
+```
+
+
+```
+true
+```
+
+Only enable parallel calls for MCP servers whose tools are safe to run at the same time. If tools read and write shared state, files, databases, or external resources, review the read/write race conditions before enabling this setting.
+
+## MCP Sampling Support[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-sampling-support)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-sampling-support)
+MCP servers can request LLM inference from Hermes via the sampling/createMessage protocol. This allows an MCP server to ask Hermes to generate text on its behalf — useful for servers that need LLM capabilities but don't have their own model access.
+
+```
+sampling/createMessage
+```
+
+Sampling is enabled by default for all MCP servers (when the MCP SDK supports it). Configure it per-server under the sampling key:
+
+```
+sampling
+```
+
+
+```
+mcp_servers: my_server: command: "my-mcp-server" sampling: enabled: true # Enable sampling (default: true) model: "openai/gpt-4o" # Override model for sampling requests (optional) max_tokens_cap: 4096 # Max tokens per sampling response (default: 4096) timeout: 30 # Timeout in seconds per request (default: 30) max_rpm: 10 # Rate limit: max requests per minute (default: 10) max_tool_rounds: 5 # Max tool-use rounds in sampling loops (default: 5) allowed_models: [] # Allowlist of model names the server may request (empty = any) log_level: "info" # Audit log level: debug, info, or warning (default: info)
+```
+
+
+```
+mcp_servers: my_server: command: "my-mcp-server" sampling: enabled: true # Enable sampling (default: true) model: "openai/gpt-4o" # Override model for sampling requests (optional) max_tokens_cap: 4096 # Max tokens per sampling response (default: 4096) timeout: 30 # Timeout in seconds per request (default: 30) max_rpm: 10 # Rate limit: max requests per minute (default: 10) max_tool_rounds: 5 # Max tool-use rounds in sampling loops (default: 5) allowed_models: [] # Allowlist of model names the server may request (empty = any) log_level: "info" # Audit log level: debug, info, or warning (default: info)
+```
+
+The sampling handler includes a sliding-window rate limiter, per-request timeouts, and tool-loop depth limits to prevent runaway usage. Metrics (request count, errors, tokens used) are tracked per server instance.
+To disable sampling for a specific server:
+
+```
+mcp_servers: untrusted_server: url: "https://mcp.example.com" sampling: enabled: false
+```
+
+
+```
+mcp_servers: untrusted_server: url: "https://mcp.example.com" sampling: enabled: false
+```
+
+## Running Hermes as an MCP server[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#running-hermes-as-an-mcp-server)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#running-hermes-as-an-mcp-server)
+In addition to connecting to MCP servers, Hermes can also be an MCP server. This lets other MCP-capable agents (Claude Code, Cursor, Codex, or any MCP client) use Hermes's messaging capabilities — list conversations, read message history, and send messages across all your connected platforms.
+
+### When to use this[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#when-to-use-this)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#when-to-use-this)
+- You want Claude Code, Cursor, or another coding agent to send and read Telegram/Discord/Slack messages through Hermes
+- You want a single MCP server that bridges to all of Hermes's connected messaging platforms at once
+- You already have a running Hermes gateway with connected platforms
+
+### Quick start[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start-1)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start-1)
+
+```
+hermes mcp serve
+```
+
+
+```
+hermes mcp serve
+```
+
+This starts a stdio MCP server. The MCP client (not you) manages the process lifecycle.
+
+### MCP client configuration[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-client-configuration)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-client-configuration)
+Add Hermes to your MCP client config. For example, in Claude Code's ~/.claude/claude_desktop_config.json:
+
+```
+~/.claude/claude_desktop_config.json
+```
+
+
+```
+{ "mcpServers": { "hermes": { "command": "hermes", "args": ["mcp", "serve"] } }}
+```
+
+
+```
+{ "mcpServers": { "hermes": { "command": "hermes", "args": ["mcp", "serve"] } }}
+```
+
+Or if you installed Hermes in a specific location:
+
+```
+{ "mcpServers": { "hermes": { "command": "/home/user/.hermes/hermes-agent/venv/bin/hermes", "args": ["mcp", "serve"] } }}
+```
+
+
+```
+{ "mcpServers": { "hermes": { "command": "/home/user/.hermes/hermes-agent/venv/bin/hermes", "args": ["mcp", "serve"] } }}
+```
+
+### Available tools[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#available-tools)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#available-tools)
+The MCP server exposes 10 tools, matching OpenClaw's channel bridge surface plus a Hermes-specific channel browser:
+
+```
+conversations_list
+```
+
+
+```
+conversation_get
+```
+
+
+```
+messages_read
+```
+
+
+```
+attachments_fetch
+```
+
+
+```
+events_poll
+```
+
+
+```
+events_wait
+```
+
+
+```
+messages_send
+```
+
+
+```
+telegram:123456
+```
+
+
+```
+discord:#general
+```
+
+
+```
+channels_list
+```
+
+
+```
+permissions_list_open
+```
+
+
+```
+permissions_respond
+```
+
+### Event system[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#event-system)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#event-system)
+The MCP server includes a live event bridge that polls Hermes's session database for new messages. This gives MCP clients near-real-time awareness of incoming conversations:
+
+```
+# Poll for new events (non-blocking)events_poll(after_cursor=0)# Wait for next event (blocks up to timeout)events_wait(after_cursor=42, timeout_ms=30000)
+```
+
+
+```
+# Poll for new events (non-blocking)events_poll(after_cursor=0)# Wait for next event (blocks up to timeout)events_wait(after_cursor=42, timeout_ms=30000)
+```
+
+Event types: message, approval_requested, approval_resolved
+
+```
+message
+```
+
+
+```
+approval_requested
+```
+
+
+```
+approval_resolved
+```
+
+The event queue is in-memory and starts when the bridge connects. Older messages are available through messages_read.
+
+```
+messages_read
+```
+
+### Options[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#options)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#options)
+
+```
+hermes mcp serve # Normal modehermes mcp serve --verbose # Debug logging on stderr
+```
+
+
+```
+hermes mcp serve # Normal modehermes mcp serve --verbose # Debug logging on stderr
+```
+
+### How it works[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-it-works)
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-it-works)
+The MCP server reads conversation data directly from Hermes's session store (~/.hermes/sessions/sessions.json and the SQLite database). A background thread polls the database for new messages and maintains an in-memory event queue. For sending messages, it uses the same send_message infrastructure as the Hermes agent itself.
+
+```
+~/.hermes/sessions/sessions.json
+```
+
+
+```
+send_message
+```
+
+The gateway does NOT need to be running for read operations (listing conversations, reading history, polling events). It DOES need to be running for send operations, since the platform adapters need active connections.
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#current-limits)
+- Stdio transport only (no HTTP MCP transport yet)
+- Event polling at ~200ms intervals via mtime-optimized DB polling (skips work when files are unchanged)
+- No claude/channel push notification protocol yet
+- Text-only sends (no media/attachment sending through messages_send)
+
+```
+claude/channel
+```
+
+
+```
+messages_send
+```
+
+[​](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#related-docs)
+- [Use MCP with Hermes](https://hermes-agent.nousresearch.com/docs/guides/use-mcp-with-hermes)
+- [CLI Commands](https://hermes-agent.nousresearch.com/docs/reference/cli-commands)
+- [Slash Commands](https://hermes-agent.nousresearch.com/docs/reference/slash-commands)
+- [FAQ](https://hermes-agent.nousresearch.com/docs/reference/faq)
+[Use MCP with Hermes](https://hermes-agent.nousresearch.com/docs/guides/use-mcp-with-hermes)
+[CLI Commands](https://hermes-agent.nousresearch.com/docs/reference/cli-commands)
+[Slash Commands](https://hermes-agent.nousresearch.com/docs/reference/slash-commands)
+[FAQ](https://hermes-agent.nousresearch.com/docs/reference/faq)
+[Edit this page](https://github.com/NousResearch/hermes-agent/edit/main/website/docs/user-guide/features/mcp.md)
+[PreviousAI Providers](https://hermes-agent.nousresearch.com/docs/integrations/providers)
+[NextACP Editor Integration](https://hermes-agent.nousresearch.com/docs/user-guide/features/acp)
+- [What MCP gives you](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-mcp-gives-you)
+- [Quick start](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start)
+- [Two kinds of MCP servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#two-kinds-of-mcp-servers)[Stdio servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-servers)[HTTP servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#http-servers)
+- [Stdio servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-servers)
+- [HTTP servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#http-servers)
+- [Basic configuration reference](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#basic-configuration-reference)[Common keys](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#common-keys)[Minimal stdio example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-stdio-example)[Minimal HTTP example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-http-example)
+- [Common keys](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#common-keys)
+- [Minimal stdio example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-stdio-example)
+- [Minimal HTTP example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-http-example)
+- [How Hermes registers MCP tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-hermes-registers-mcp-tools)
+- [MCP utility tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-utility-tools)[Important](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#important)
+- [Important](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#important)
+- [Per-server filtering](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#per-server-filtering)[Disable a server entirely](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#disable-a-server-entirely)[Whitelist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#whitelist-server-tools)[Blacklist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#blacklist-server-tools)[Precedence rule](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#precedence-rule)[Filter utility tools too](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filter-utility-tools-too)[Full example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#full-example)
+- [Disable a server entirely](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#disable-a-server-entirely)
+- [Whitelist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#whitelist-server-tools)
+- [Blacklist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#blacklist-server-tools)
+- [Precedence rule](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#precedence-rule)
+- [Filter utility tools too](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filter-utility-tools-too)
+- [Full example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#full-example)
+
+- [What happens if everything is filtered out?](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-happens-if-everything-is-filtered-out)
+- [Runtime behavior](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#runtime-behavior)[Discovery time](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#discovery-time)[Dynamic Tool Discovery](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#dynamic-tool-discovery)[Reloading](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#reloading)[Toolsets](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#toolsets)
+- [Discovery time](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#discovery-time)
+- [Dynamic Tool Discovery](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#dynamic-tool-discovery)
+- [Reloading](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#reloading)
+- [Toolsets](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#toolsets)
+- [Security model](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#security-model)[Stdio env filtering](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-env-filtering)[Config-level exposure control](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#config-level-exposure-control)
+- [Stdio env filtering](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-env-filtering)
+- [Config-level exposure control](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#config-level-exposure-control)
+- [Example use cases](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#example-use-cases)[GitHub server with a minimal issue-management surface](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#github-server-with-a-minimal-issue-management-surface)[Stripe server with dangerous actions removed](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stripe-server-with-dangerous-actions-removed)[Filesystem server for a single project root](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filesystem-server-for-a-single-project-root)
+- [GitHub server with a minimal issue-management surface](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#github-server-with-a-minimal-issue-management-surface)
+- [Stripe server with dangerous actions removed](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stripe-server-with-dangerous-actions-removed)
+- [Filesystem server for a single project root](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filesystem-server-for-a-single-project-root)
+- [Troubleshooting](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#troubleshooting)[MCP server not connecting](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-server-not-connecting)[Tools not appearing](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#tools-not-appearing)[Why didn't resource or prompt utilities appear?](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#why-didnt-resource-or-prompt-utilities-appear)
+- [MCP server not connecting](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-server-not-connecting)
+- [Tools not appearing](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#tools-not-appearing)
+- [Why didn't resource or prompt utilities appear?](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#why-didnt-resource-or-prompt-utilities-appear)
+- [Parallel Tool Calls](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#parallel-tool-calls)
+- [MCP Sampling Support](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-sampling-support)
+
+- [Running Hermes as an MCP server](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#running-hermes-as-an-mcp-server)[When to use this](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#when-to-use-this)[Quick start](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start-1)[MCP client configuration](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-client-configuration)[Available tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#available-tools)[Event system](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#event-system)[Options](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#options)[How it works](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-it-works)[Current limits](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#current-limits)
+- [When to use this](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#when-to-use-this)
+- [Quick start](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start-1)
+- [MCP client configuration](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-client-configuration)
+- [Available tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#available-tools)
+- [Event system](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#event-system)
+- [Options](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#options)
+- [How it works](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-it-works)
+- [Current limits](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#current-limits)
+- [Related docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#related-docs)
+[What MCP gives you](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-mcp-gives-you)
+[Quick start](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start)
+[Two kinds of MCP servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#two-kinds-of-mcp-servers)
+- [Stdio servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-servers)
+- [HTTP servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#http-servers)
+[Stdio servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-servers)
+[HTTP servers](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#http-servers)
+[Basic configuration reference](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#basic-configuration-reference)
+- [Common keys](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#common-keys)
+- [Minimal stdio example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-stdio-example)
+- [Minimal HTTP example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-http-example)
+[Common keys](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#common-keys)
+[Minimal stdio example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-stdio-example)
+[Minimal HTTP example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#minimal-http-example)
+[How Hermes registers MCP tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-hermes-registers-mcp-tools)
+[MCP utility tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-utility-tools)
+- [Important](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#important)
+[Important](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#important)
+[Per-server filtering](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#per-server-filtering)
+- [Disable a server entirely](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#disable-a-server-entirely)
+- [Whitelist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#whitelist-server-tools)
+- [Blacklist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#blacklist-server-tools)
+- [Precedence rule](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#precedence-rule)
+- [Filter utility tools too](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filter-utility-tools-too)
+
+- [Full example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#full-example)
+[Disable a server entirely](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#disable-a-server-entirely)
+[Whitelist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#whitelist-server-tools)
+[Blacklist server tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#blacklist-server-tools)
+[Precedence rule](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#precedence-rule)
+[Filter utility tools too](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filter-utility-tools-too)
+[Full example](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#full-example)
+[What happens if everything is filtered out?](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#what-happens-if-everything-is-filtered-out)
+[Runtime behavior](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#runtime-behavior)
+- [Discovery time](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#discovery-time)
+- [Dynamic Tool Discovery](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#dynamic-tool-discovery)
+- [Reloading](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#reloading)
+- [Toolsets](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#toolsets)
+[Discovery time](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#discovery-time)
+[Dynamic Tool Discovery](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#dynamic-tool-discovery)
+[Reloading](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#reloading)
+[Toolsets](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#toolsets)
+[Security model](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#security-model)
+- [Stdio env filtering](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-env-filtering)
+- [Config-level exposure control](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#config-level-exposure-control)
+[Stdio env filtering](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stdio-env-filtering)
+[Config-level exposure control](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#config-level-exposure-control)
+[Example use cases](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#example-use-cases)
+- [GitHub server with a minimal issue-management surface](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#github-server-with-a-minimal-issue-management-surface)
+- [Stripe server with dangerous actions removed](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stripe-server-with-dangerous-actions-removed)
+- [Filesystem server for a single project root](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filesystem-server-for-a-single-project-root)
+[GitHub server with a minimal issue-management surface](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#github-server-with-a-minimal-issue-management-surface)
+[Stripe server with dangerous actions removed](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#stripe-server-with-dangerous-actions-removed)
+[Filesystem server for a single project root](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#filesystem-server-for-a-single-project-root)
+[Troubleshooting](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#troubleshooting)
+- [MCP server not connecting](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-server-not-connecting)
+- [Tools not appearing](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#tools-not-appearing)
+- [Why didn't resource or prompt utilities appear?](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#why-didnt-resource-or-prompt-utilities-appear)
+[MCP server not connecting](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-server-not-connecting)
+[Tools not appearing](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#tools-not-appearing)
+[Why didn't resource or prompt utilities appear?](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#why-didnt-resource-or-prompt-utilities-appear)
+
+[Parallel Tool Calls](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#parallel-tool-calls)
+[MCP Sampling Support](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-sampling-support)
+[Running Hermes as an MCP server](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#running-hermes-as-an-mcp-server)
+- [When to use this](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#when-to-use-this)
+- [Quick start](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start-1)
+- [MCP client configuration](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-client-configuration)
+- [Available tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#available-tools)
+- [Event system](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#event-system)
+- [Options](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#options)
+- [How it works](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-it-works)
+- [Current limits](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#current-limits)
+[When to use this](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#when-to-use-this)
+[Quick start](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#quick-start-1)
+[MCP client configuration](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#mcp-client-configuration)
+[Available tools](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#available-tools)
+[Event system](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#event-system)
+[Options](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#options)
+[How it works](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#how-it-works)
+[Current limits](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#current-limits)
+[Related docs](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp#related-docs)
+- [Getting Started](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)
+- [User Guide](https://hermes-agent.nousresearch.com/docs/user-guide/cli)
+- [Developer Guide](https://hermes-agent.nousresearch.com/docs/developer-guide/architecture)
+- [Reference](https://hermes-agent.nousresearch.com/docs/reference/cli-commands)
+[Getting Started](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)
+[User Guide](https://hermes-agent.nousresearch.com/docs/user-guide/cli)
+[Developer Guide](https://hermes-agent.nousresearch.com/docs/developer-guide/architecture)
+[Reference](https://hermes-agent.nousresearch.com/docs/reference/cli-commands)
+- [Discord](https://discord.gg/NousResearch)
+- [GitHub Discussions](https://github.com/NousResearch/hermes-agent/discussions)
+- [Skills Hub](https://agentskills.io)
+[Discord](https://discord.gg/NousResearch)
+[GitHub Discussions](https://github.com/NousResearch/hermes-agent/discussions)
+[Skills Hub](https://agentskills.io)
+- [GitHub](https://github.com/NousResearch/hermes-agent)
+- [Nous Research](https://nousresearch.com)
+[GitHub](https://github.com/NousResearch/hermes-agent)
+[Nous Research](https://nousresearch.com)
+[Nous Research](https://nousresearch.com)
+
