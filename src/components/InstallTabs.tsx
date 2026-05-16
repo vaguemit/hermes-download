@@ -70,13 +70,10 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
         </div>
 
         {/* Tab Content */}
-        <div className="space-y-[32px]">
+        <div className="space-y-[48px]">
           {/* Step 1 */}
-          <div className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
-            <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
-            <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
-            <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
-            <span className="absolute -bottom-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┘</span>
+          <div className="relative group border border-[var(--color-border)] bg-transparent p-[48px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
+
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-[24px]">
               <div>
@@ -100,11 +97,8 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
           </div>
 
           {/* Step 2 */}
-          <div className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
-            <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
-            <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
-            <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
-            <span className="absolute -bottom-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┘</span>
+          <div className="relative group border border-[var(--color-border)] bg-transparent p-[48px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
+
 
             <div>
               <div className="flex items-center gap-[12px] mb-[16px]">
@@ -131,11 +125,8 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
           </div>
 
           {/* Step 3 */}
-          <div className="relative group border border-[var(--color-border)] bg-transparent p-[32px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
-            <span className="absolute -top-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┌</span>
-            <span className="absolute -top-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┐</span>
-            <span className="absolute -bottom-[1px] -left-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">└</span>
-            <span className="absolute -bottom-[1px] -right-[1px] text-[var(--color-border)] group-hover:text-[var(--color-border-strong)] leading-none transition-colors">┘</span>
+          <div className="relative group border border-[var(--color-border)] bg-transparent p-[48px] hover:border-[var(--color-border-strong)] transition-colors duration-[200ms]">
+
 
             <div>
               <div className="flex items-center gap-[12px] mb-[8px]">
