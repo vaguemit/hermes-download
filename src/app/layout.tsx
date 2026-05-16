@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -21,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+      <body className="antialiased" style={{ fontFamily: "var(--font-sans, 'Inter', sans-serif)" }}>
         {children}
       </body>
     </html>
