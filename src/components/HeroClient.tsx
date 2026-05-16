@@ -167,7 +167,7 @@ export function HeroClient({ latestVersion }: HeroClientProps) {
           }}
         >
           <Image
-            src="/app-screenshot.avif"
+            src="/app-screenshot.png"
             alt="Hermes GUI"
             fill
             className="object-cover"
