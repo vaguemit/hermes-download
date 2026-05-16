@@ -32,15 +32,20 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-150 ${scrolled ? 'bg-[#0a0a0a]/80 backdrop-blur border-b border-[#1f1f1f]' : 'bg-transparent border-b border-transparent'}`}
+      className="fixed top-0 left-0 right-0 z-50 transition-colors duration-150"
+      style={{
+        backgroundColor: scrolled ? "rgba(10,10,10,0.8)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid #1f1f1f" : "1px solid transparent",
+      }}
     >
-      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-        
+      <div
+        style={{ maxWidth: "1152px", margin: "0 auto", padding: "0 24px", height: "56px" }}
+        className="flex items-center justify-between"
+      >
         {/* Logo */}
-        <Link
-          href="#hero"
-          className="text-sm font-medium text-white transition-colors duration-150"
-        >
+        <Link href="#hero" className="text-sm font-medium text-white transition-colors duration-150">
           hermes gui
         </Link>
 
@@ -50,7 +55,10 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm text-[#888] hover:text-white transition-colors duration-150"
+              className="text-sm transition-colors duration-150"
+              style={{ color: "#888" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}
             >
               {link.name}
             </Link>
@@ -61,7 +69,21 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
         <div className="hidden md:flex items-center">
           <Link
             href="#install"
-            className="border border-white/20 px-3 py-1.5 rounded-md text-sm text-[#f5f5f5] hover:bg-white hover:text-black transition-colors duration-150"
+            className="text-sm transition-colors duration-150"
+            style={{
+              border: "1px solid rgba(255,255,255,0.2)",
+              padding: "6px 12px",
+              borderRadius: "6px",
+              color: "#f5f5f5",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#fff";
+              e.currentTarget.style.color = "#000";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.color = "#f5f5f5";
+            }}
           >
             Download ↓
           </Link>
@@ -69,7 +91,8 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-sm text-[#888] hover:text-white transition-colors duration-150"
+          className="md:hidden text-sm transition-colors duration-150"
+          style={{ color: "#888" }}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -81,31 +104,45 @@ export function NavbarClient({ stars, latestVersion }: NavbarClientProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ translateY: "-100%" }}
-            animate={{ translateY: "0%" }}
-            exit={{ translateY: "-100%" }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-14 left-0 right-0 h-screen bg-[#0a0a0a] flex flex-col p-8 gap-6 md:hidden -z-10"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden flex flex-col p-8 gap-6"
+            style={{
+              position: "absolute",
+              top: "56px",
+              left: 0,
+              right: 0,
+              backgroundColor: "#0a0a0a",
+              borderBottom: "1px solid #1f1f1f",
+            }}
           >
             {links.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-2xl font-medium text-[#888] hover:text-white transition-colors duration-150"
+                className="text-xl font-medium transition-colors duration-150"
+                style={{ color: "#888" }}
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
-            <div className="mt-8">
-              <Link
-                href="#install"
-                className="border border-white/20 px-4 py-3 rounded-md text-lg text-center text-[#f5f5f5] hover:bg-white hover:text-black transition-colors duration-150 w-full block"
-                onClick={() => setIsOpen(false)}
-              >
-                Download ↓
-              </Link>
-            </div>
+            <Link
+              href="#install"
+              className="text-center text-sm transition-colors duration-150 mt-4"
+              style={{
+                border: "1px solid rgba(255,255,255,0.2)",
+                padding: "12px 16px",
+                borderRadius: "6px",
+                color: "#f5f5f5",
+                display: "block",
+              }}
+              onClick={() => setIsOpen(false)}
+            >
+              Download ↓
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
