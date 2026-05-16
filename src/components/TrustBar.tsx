@@ -1,43 +1,42 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export function TrustBar() {
   const items = [
-    "Tauri v2",
-    "React 19",
-    "TypeScript",
-    "Rust",
-    "Tailwind CSS",
-    "Nous Research",
-    "OpenAI-compatible",
-    "MIT License",
-    "SSE Streaming",
-    "Native Desktop",
+    "TAURI V2",
+    "REACT 19",
+    "TYPESCRIPT",
+    "RUST",
+    "TAILWIND CSS",
+    "NOUS RESEARCH",
+    "OPENAI-COMPATIBLE",
+    "MIT LICENSE",
+    "SSE STREAMING",
+    "NATIVE DESKTOP",
   ];
 
+  // Join items with the centered dot separator
+  const content = items.join(" · ") + " · ";
+
   return (
-    <section 
-      className="w-full h-[48px] border-y border-[var(--color-border)] bg-[var(--color-bg)] overflow-hidden flex items-center relative z-10"
-      style={{
-        background: `repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(255,255,255,0.015) 2px,
-          rgba(255,255,255,0.015) 4px
-        )`
-      }}
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
+      className="w-full h-[48px] border-y border-[var(--color-border-subtle)] bg-transparent overflow-hidden flex items-center relative z-[var(--z-base)]"
     >
-      <div className="flex whitespace-nowrap animate-marquee">
-        {/* We repeat the list twice to create an infinite scroll illusion */}
-        {[...items, ...items, ...items, ...items].map((item, idx) => (
-          <div key={idx} className="flex items-center">
-            <span className="font-mono text-[0.6875rem] font-normal tracking-[0.12em] uppercase text-[var(--color-text-tertiary)] mx-[16px]">
-              {item}
-            </span>
-            <span className="text-[var(--color-border)] font-mono text-[0.6875rem]">
-              ────
-            </span>
-          </div>
-        ))}
+      <div className="flex w-[200%] animate-marquee">
+        {/* We need two identical spans to create a seamless loop */}
+        <span className="flex-1 whitespace-nowrap font-[var(--font-mono)] text-[var(--text-mono-xs)] text-[var(--color-text-tertiary)] tracking-[0.12em] uppercase select-none">
+          {content}
+          {content}
+        </span>
+        <span className="flex-1 whitespace-nowrap font-[var(--font-mono)] text-[var(--text-mono-xs)] text-[var(--color-text-tertiary)] tracking-[0.12em] uppercase select-none">
+          {content}
+          {content}
+        </span>
       </div>
-    </section>
+    </motion.section>
   );
 }
