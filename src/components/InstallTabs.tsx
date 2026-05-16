@@ -39,13 +39,13 @@ export function InstallTabs({ latestVersion }: InstallTabsProps) {
   const releaseUrl = `https://github.com/vaguemit/hermes-gui/releases/tag/${latestVersion}`;
 
   return (
-    <section id="install" className="py-[120px] bg-[var(--color-bg)] font-mono">
-      <div className="max-w-[800px] mx-auto px-8">
+    <section id="install" className="section-padding bg-[var(--color-bg)] font-mono">
+      <div className="page-container" style={{ maxWidth: "800px" }}>
         <div ref={headerRef} className="text-center mb-[48px]">
           <div className="inline-flex items-center gap-[6px] px-[10px] py-[4px] font-mono text-[0.8125rem] text-[var(--color-text-tertiary)] uppercase mb-[24px]">
             ─[ INSTALLATION ]─
           </div>
-          <h2 className="text-[1.5rem] font-bold text-[var(--color-text-primary)]">
+          <h2 className="section-headline">
             {isInView ? <ScrambleReveal text="Get started in 60 seconds." /> : <span className="opacity-0">Get started in 60 seconds.</span>}
           </h2>
         </div>
