@@ -23,7 +23,7 @@ export async function OpenSourceCTA() {
               Hermes GUI is MIT-licensed. Built on Tauri, React, and the Nous Research Hermes Agent ecosystem.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full">
               <a
                 href="https://github.com/vaguemit/hermes-gui"
                 target="_blank"
